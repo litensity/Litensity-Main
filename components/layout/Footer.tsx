@@ -24,6 +24,10 @@ export async function Footer() {
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.statement}>
+            <Link href="/" className={styles.logo} aria-label={`${settings.companyName} — home`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/litensity-logo-reverse.png" alt="" width={738} height={159} loading="lazy" />
+            </Link>
             <CmsText as="p" value={settings.footerStatement} className={styles.statementText} />
             {settings.newsletterEnabled && (
               <div className={styles.newsletter}>

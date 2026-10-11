@@ -33,6 +33,17 @@
   }
 }
 
+.logo {
+  display: inline-block;
+  margin-bottom: var(--space-md);
+}
+
+.logo img {
+  display: block;
+  height: 48px;
+  width: auto;
+}
+
 .statementText {
   font-family: var(--font-display);
   font-size: var(--fs-2xl);

@@ -66,8 +66,9 @@
 
 .admin-brand {
   display: flex;
-  align-items: baseline;
-  gap: 0.15rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
   padding: 0 0.75rem;
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -75,12 +76,13 @@
   letter-spacing: -0.03em;
 }
 
-.admin-brand span {
-  color: var(--a-accent);
+.admin-brand img {
+  height: 32px;
+  width: auto;
+  max-width: 100%;
 }
 
 .admin-brand small {
-  margin-left: 0.5rem;
   font-family: var(--font-sans);
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -943,6 +945,12 @@ a.a-card:hover {
   padding: 2rem;
   border-radius: 14px;
   background: #fbf8f3;
+}
+
+.a-login-logo {
+  height: 44px;
+  width: auto;
+  justify-self: start;
 }
 
 .a-login-card h1 {

@@ -13,6 +13,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Read at runtime by lib/mail/mailer.ts (inline email logo); not discoverable by file tracing.
+  outputFileTracingIncludes: { "/**": ["./lib/mail/assets/**"] },
   // Lets `next dev` serve HMR/dev assets when previewed through an ngrok tunnel.
   allowedDevOrigins: ["*.ngrok-free.app", "*.ngrok-free.dev", "*.ngrok.app"],
   images: {

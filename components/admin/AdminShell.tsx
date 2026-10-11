@@ -65,7 +65,8 @@ export function AdminShell({ admin, children }: { admin: AdminUser; children: Re
     <div className="admin-shell">
       <aside className="admin-sidebar" aria-label="Admin navigation">
         <Link href="/admin" className="admin-brand">
-          Litensity<span>.</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/litensity-logo-reverse.png" alt="Litensity" width={738} height={159} />
           <small>Admin</small>
         </Link>
         <nav>

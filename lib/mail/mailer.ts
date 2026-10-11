@@ -1,7 +1,16 @@
 import "server-only";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import nodemailer, { type Transporter } from "nodemailer";
 import { serverEnv } from "@/lib/env";
-import type { RenderedEmail } from "./templates/layout";
+import { LOGO_CID, type RenderedEmail } from "./templates/layout";
+
+/** Embedded (cid:) rather than linked, so the logo shows in every inbox regardless of where the site is hosted. */
+let logo: Buffer | null = null;
+function logoAttachment() {
+  logo ??= readFileSync(path.join(process.cwd(), "lib/mail/assets/litensity-logo.png"));
+  return { filename: "litensity-logo.png", content: logo, contentType: "image/png", cid: LOGO_CID, contentDisposition: "inline" as const };
+}
 
 /*
  * The only place Nodemailer is configured. Every email in the app goes through
@@ -50,15 +59,27 @@ export async function sendEmail({ to, email, replyTo, attachments }: SendOptions
   if (!transport || !smtp) throw new MailNotConfiguredError();
   const recipients = (Array.isArray(to) ? to : [to]).filter(Boolean);
   if (recipients.length === 0) throw new Error("No email recipients");
-  await transport.sendMail({
+  const message = {
     from: smtp.from,
     to: recipients,
     replyTo,
     subject: email.subject,
     html: email.html,
     text: email.text,
-    attachments,
-  });
+    attachments: email.html.includes(`cid:${LOGO_CID}`) ? [logoAttachment(), ...(attachments ?? [])] : attachments,
+  };
+  try {
+    await transport.sendMail(message);
+  } catch (err) {
+    // A pooled connection left idle can be closed by the server; the pool then opens a fresh one.
+    if (!isDroppedConnection(err)) throw err;
+    await transport.sendMail(message);
+  }
+}
+
+function isDroppedConnection(err: unknown): boolean {
+  const { code, message } = (err ?? {}) as { code?: string; message?: string };
+  return ["ECONNRESET", "EPIPE", "ETIMEDOUT", "ESOCKET", "ECONNECTION"].includes(code ?? "") || /ECONNRESET|EPIPE|socket hang up|connection closed/i.test(message ?? "");
 }
 
 /** Internal recipients for a form: nominated list from Admin, else the env fallback. */

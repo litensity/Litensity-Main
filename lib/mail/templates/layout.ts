@@ -29,6 +29,9 @@ interface LayoutOptions {
   footer?: string;
 }
 
+/** Content-ID of the header logo; `sendEmail` attaches the image inline when the HTML references it. */
+export const LOGO_CID = "litensity-logo";
+
 /** Table-based layout so it renders consistently in Gmail/Outlook. */
 export function emailLayout({ preheader, heading, body, accent = "#E0461B", footer }: LayoutOptions): string {
   return `<!doctype html>
@@ -38,7 +41,7 @@ export function emailLayout({ preheader, heading, body, accent = "#E0461B", foot
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F3EEE6;padding:32px 12px;">
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#FBF8F3;border-radius:6px;overflow:hidden;">
-<tr><td style="padding:28px 36px;background:#16110D;color:#F3EEE6;font-family:Georgia,'Times New Roman',serif;font-size:26px;letter-spacing:-0.5px;">Litensity<span style="color:${accent}">.</span></td></tr>
+<tr><td style="padding:24px 36px;background:#16110D;color:#F3EEE6;font-family:Georgia,'Times New Roman',serif;font-size:26px;letter-spacing:-0.5px;"><img src="cid:${LOGO_CID}" width="200" height="43" alt="Litensity" style="display:block;border:0;outline:none;width:200px;height:43px;color:#F3EEE6;"></td></tr>
 <tr><td style="height:4px;background:${accent};line-height:4px;font-size:0;">&nbsp;</td></tr>
 <tr><td style="padding:36px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#16110D;">
 <h1 style="margin:0 0 20px;font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:28px;line-height:1.15;color:#16110D;">${escapeHtml(heading)}</h1>

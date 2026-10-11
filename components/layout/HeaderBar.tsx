@@ -97,12 +97,14 @@ export function HeaderBar({ items, enquire, companyName, logoUrl, brands, contac
           <Link href="/" className={styles.logo} aria-label={`${companyName} — home`}>
             {logoUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={logoUrl} alt="" height={32} />
+              <img src={logoUrl} alt="" height={40} />
             ) : (
-              <span className={styles.wordmark}>
-                {companyName}
-                <span className={styles.wordmarkDot} aria-hidden="true" />
-              </span>
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/litensity-logo.png" alt="" width={738} height={159} className={styles.logoDefault} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/litensity-logo-reverse.png" alt="" width={738} height={159} className={styles.logoReverse} />
+              </>
             )}
           </Link>
 

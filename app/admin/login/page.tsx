@@ -12,7 +12,9 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/logi
   return (
     <div className="a-login">
       <div className="a-login-card">
-        <p className="admin-muted">Litensity Admin</p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/brand/litensity-logo.png" alt="Litensity" width={738} height={159} className="a-login-logo" />
+        <p className="admin-muted">Admin</p>
         <h1>Sign in</h1>
         <LoginForm next={next} />
       </div>
