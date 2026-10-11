@@ -1,158 +1,285 @@
-# Litensity — Corporate Website + Admin CMS
+# Litensity Website — How to Use It
 
-Next.js 16 · TypeScript · Supabase (Postgres, Auth, Storage) · Google Sheets (leads) · Nodemailer.
+This is the guide to the Litensity Food and Beverages website and its **Admin panel**. The website covers the group
+and its three brands: **BIGGUYS**, **Belgian Waffle** and **DCube Desserts Cafe**.
 
-- Product scope: [`PRD.md`](PRD.md) · Engineering rules: [`CLAUDE.md`](CLAUDE.md)
-- Architecture, schema and decisions: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
-- What Litensity still needs to supply: [`docs/CLIENT_INPUTS.md`](docs/CLIENT_INPUTS.md)
+You don't need a developer to keep the site up to date. Stores, brands, jobs, CSR stories, photos, page text, menus
+and contact details are all edited in the Admin panel. Changes appear on the live website as soon as you publish them.
+
+> **Developers:** setup, hosting and technical notes are in [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md).
 
 ---
 
-## Local development
+## Contents
 
-Requirements: Node 20+ (tested on 24), Docker Desktop (for the local Supabase stack).
+1. [What's on the website](#1-whats-on-the-website)
+2. [Logging in to the Admin panel](#2-logging-in-to-the-admin-panel)
+3. [A tour of the Admin panel](#3-a-tour-of-the-admin-panel)
+4. [Everyday tasks, step by step](#4-everyday-tasks-step-by-step)
+5. [Where enquiries go](#5-where-enquiries-go)
+6. [Golden rules](#6-golden-rules)
+7. [Common questions](#7-common-questions)
+8. [What we still need from Litensity](#8-what-we-still-need-from-litensity)
 
-```bash
-npm install
-cp .env.example .env.local        # then fill values (see below)
-npm run db:start                  # local Supabase: Postgres, Auth, Storage, Studio, Mailpit
-npm run db:reset                  # applies migrations + seed.sql + dev-fixtures.sql
-npm run admin:create -- you@example.com 'a-long-password' owner "Your Name"
-npm run dev                       # http://localhost:3000  ·  admin: /admin
-```
+---
 
-`npm run db:start` prints the local anon and service-role keys for `.env.local`.
+## 1. What's on the website
 
-| Local service | URL |
+| Page | Address | What visitors do there |
+| --- | --- | --- |
+| Home | `/` | Meet the group, see the three brands, store map, founders and CSR |
+| Our Brands | `/brands` | Compare brands; jump to a menu, a store or an investment enquiry |
+| Brand pages | `/brands/bigguys`, `/brands/belgian-waffle`, `/brands/dcube` | Story, menu, stores, gallery, order links, downloads, investment (BIGGUYS and DCube only) |
+| Invest with Us | `/invest` | Group investor story and the investor enquiry form |
+| Store Locator | `/stores` | Map of India with every store; filter by brand, state or city; search by pincode; "near me" |
+| About & Founders | `/about` | Company story, milestones, founders and leadership |
+| CSR | `/csr` | Focus areas, initiatives with photos, impact figures, partner enquiry form |
+| Careers | `/careers` | Open roles and the application form (with résumé upload) |
+| Contact | `/contact` | Office address and map, department contacts, general enquiry form |
+| Privacy Policy / Terms | `/privacy`, `/terms` | Legal pages, linked from every form |
+
+On every page visitors also get:
+- a sticky **Enquire** button;
+- on phones, quick **WhatsApp** and **Call** buttons;
+- the footer with social links, menu and brochure shortcuts, and the legal pages.
+
+**Menus and brochures:** visitors enter their name, email and phone, then confirm a one-time code (OTP) before the
+file downloads. Every download is recorded as a lead. Menus can also be browsed on the brand page without
+downloading anything.
+
+**Belgian Waffle** has no investment section, no franchise brochure and no investment form. These are switched off
+on purpose and don't appear anywhere on its page.
+
+---
+
+## 2. Logging in to the Admin panel
+
+1. Go to your website address followed by **`/admin`** (for example `https://www.litensity.com/admin`).
+2. Sign in with the email and password you were given.
+3. You'll land on the **Dashboard**.
+
+- **Owners** can add or remove other admin users.
+- **Editors** can change all website content but can't manage users.
+
+To add a colleague, go to **Admin users** (owners only) and use **Add an admin**.
+
+> Keep passwords private, and change any password that was ever shared by email or chat.
+
+---
+
+## 3. A tour of the Admin panel
+
+The menu on the left is organised by task.
+
+| Menu item | What you do there |
 | --- | --- |
-| Website | http://localhost:3000 |
-| Admin | http://localhost:3000/admin |
-| Supabase Studio | http://127.0.0.1:54323 |
-| Mailpit (catches all email) | http://127.0.0.1:54324 |
+| **Dashboard** | Today's numbers (live stores, open roles, leads this week, drafts waiting) and recent leads. **Content still required** lists every placeholder that still needs real content. |
+| **Pages** | Edit the text, images and order of sections on each page, with a live desktop / tablet / mobile preview beside the editor. **Brand page labels** sets the layout shared by all brands. |
+| **Brands** | Each brand's name, logo, colours, story and on/off switches. Its menu, gallery, order links, downloads and investment content are listed underneath. |
+| **Stores** | The **Store Master**: one list of every store, which drives the map, the brand pages, the filters and the store counts. |
+| **Media library** | Every image, video and PDF that has been uploaded. Search, reuse or replace files. |
+| About & team → **Founders, Leadership, Milestones** | People profiles and the company timeline on the About page. |
+| Careers → **Open roles, Team photos** | Job listings and the "Life at Litensity" photos. |
+| CSR → **Initiatives, Photographs** | One record per CSR initiative, with its photos. |
+| Investment → **Brand models, Brand FAQs** | Franchise models and FAQs for BIGGUYS and DCube. |
+| Inbox → **Leads** | A record of every form submission and whether it reached its Google Sheet and email. |
+| Inbox → **Export to Excel** | Download enquiries as an Excel file, filtered by form, brand and date. |
+| **Settings** | Company & contact details, forms & lead routing, header/footer menus, social links, contact departments, SEO & sharing, Privacy Policy & Terms. |
 
-With `OTP_DEV_LOG=true`, OTP codes are printed to the dev-server console instead of being sent.
+### Draft, Published, Archived
 
-`supabase/dev-fixtures.sql` adds clearly-labelled **DEV SAMPLE** stores, placeholder founders and a sample job so the
-locator, filters and forms can be exercised. It is loaded only by `supabase db reset` locally — never run it against production.
+Most records have a **Status**:
+- **Draft**: saved, but only visible to admins in preview.
+- **Published**: live on the website.
+- **Archived**: hidden from the website but kept, so you can bring it back later.
 
-### Scripts
+To check a draft before it goes live, open the record and click **Preview incl. drafts ↗**.
 
-| Script | Purpose |
-| --- | --- |
-| `npm run dev` / `build` / `start` | Next.js |
-| `npm run lint` / `typecheck` | ESLint / `tsc --noEmit` |
-| `npm run db:reset` | Rebuild the local DB from migrations + seeds |
-| `npm run db:types` | Regenerate `types/database.ts` after a schema change |
-| `npm run admin:create` | Create or promote an admin user |
-| `npm run samples:load` | Load removable sample pictures & content (needs internet) |
-| `node scripts/e2e-builder.mjs` | Browser test of the page builder (needs dev server + admin) |
-| `node scripts/shoot.mjs <path> [width] [name] [--full]` | Screenshot + horizontal-overflow + console-error check |
-| `node scripts/e2e-forms.mjs` | Browser test of lead forms (needs dev server) |
-| `node scripts/e2e-admin.mjs` | Browser test of the CMS → public site flow (needs dev server + admin) |
+### Ordering
 
----
+Lists with an **Order** number show the lowest number first. Some lists can also be dragged into order.
 
-## Environment variables
+### Text formatting
 
-See [`.env.example`](.env.example). Anything without `NEXT_PUBLIC_` is server-only and never reaches the browser.
-
-| Variable | Notes |
-| --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin, used for sitemap, OG tags and links in emails/sheets |
-| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public (RLS-protected). The anon key slot takes the dashboard's **publishable** key (`sb_publishable_…`) |
-| `SUPABASE_SERVICE_ROLE_KEY` | Server only — lead delivery, OTP, private files. Takes the dashboard's **secret** key (`sb_secret_…`) |
-| `APP_SECRET` | 32+ random chars; HMAC for OTP codes, IPs, release tokens |
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` | Google Sheets writer |
-| `SMTP_*`, `MAIL_FROM`, `MAIL_FALLBACK_TO` | Nodemailer |
-| `OTP_CHANNEL` | `email` (default) or `sms` once an SMS adapter exists |
-| `NEXT_PUBLIC_MAP_TILE_URL` | Map tiles; OSM default is for development only |
+- Wrap words in `*asterisks*` to show them in the italic accent style.
+- Leave a blank line between paragraphs.
+- A new line inside a heading forces a line break.
 
 ---
 
-## Production setup
+## 4. Everyday tasks, step by step
 
-### 1. Supabase
-1. Create a project (Mumbai region recommended). Link it: `npx supabase link --project-ref <ref>`.
-2. Apply the schema: `npx supabase db push` (runs `supabase/migrations/*`).
-3. Load **only** the structural seed: run `supabase/seed.sql` in the SQL editor. Do **not** run `dev-fixtures.sql`
-   (and don't use `db push --include-seed`, which loads both).
-4. Authentication → disable public sign-ups (email provider stays enabled for admin login).
-5. Create the first owner: `node --env-file=.env.production scripts/create-admin.mjs <email> <password> owner`.
+### Edit text or images on a page
+1. **Pages** → choose the page.
+2. Click a section in the list. Edit its heading, text, buttons or image. The preview updates as you type.
+3. Use the section buttons to **move up or down**, **duplicate**, **hide** or **delete** it.
+4. Click **+ Add section** to add a new block from the library. The choices include text and image, statement,
+   quote, numbers, timeline, FAQ, photo gallery, call-to-action band and image banner.
+5. Save. The change is live straight away.
 
-### 2. Google Sheets (lead destinations)
-1. Google Cloud → create a service account, enable the **Google Sheets API**, create a JSON key.
-2. Put `client_email` and `private_key` into the env vars above.
-3. Create the five sheets (Franchise Leads, Downloads, Investor, Recruitment, General Enquiry) and **share each with the
-   service-account email as Editor**.
-4. Admin → Settings → **Forms & lead routing**: paste each Sheet ID + tab name and the nominated recipient emails.
-   Header rows are written automatically; columns after the data are left free for sales/HR status tracking.
+> Sections such as the store locator, forms and founders fill themselves from data elsewhere in the Admin panel. They
+> show a link (for example "Edit stores") that takes you to the right place.
 
-Every sheet starts with the same tagging columns — Timestamp, Intent, Brand, Source page, **Source section** (which block of
-the page the form or download was used from), Name, Email, Phone — followed by the form's own fields. Franchise rows always
-carry both "Preferred location" (BIGGUYS) and "Preferred format" (DCube) so the shared sheet keeps one column layout.
+### Add or update a store
+1. **Stores** → **New store**, or click an existing store.
+2. Fill in the brand, store name, status, phone, full address, city, state, pincode, opening hours and (optionally)
+   a photo.
+3. **Latitude and longitude:** in Google Maps, right-click the store and click the numbers at the top of the menu to
+   copy them.
+4. Set **Status**:
+   - **Live** puts the store on the map.
+   - **Opening soon** lists the store without a map pin.
+5. Optionally add **Order online links** (Swiggy, Zomato and so on) underneath.
+6. Save. The map, the brand page, the filters and the store counts all update together.
 
-Every submission is also logged in `lead_submissions` (Admin → Leads) with its sheet/email delivery status, so nothing is
-lost if Google or SMTP is briefly unavailable. Google Sheets remains the lead destination.
+To close a store, tick **Archived** rather than deleting it.
 
-### 3. Email (Nodemailer)
-Use the domain's SMTP (Google Workspace, Zoho, SES, etc.). Set SPF/DKIM for the `MAIL_FROM` domain to avoid spam folders.
+### Post a job
+1. Careers → **Open roles** → **New role**.
+2. Add the job title, brand (leave it empty for group roles), location, type and description.
+3. Set **Status** to **Published** and make sure **Accepting applications** is ticked.
 
-### 4. Deploy
-Any Next.js-capable host (Vercel, Render, a Node server). Set all env vars, then `npm run build && npm start`.
-Server-action uploads (résumés) need a 6 MB request body limit (configured in `next.config.ts`).
+To close the role, untick **Accepting applications** or archive it.
+
+### Add a CSR initiative
+1. CSR → **Initiatives** → **New initiative**. Add the title, location, date and description.
+2. Save, then add 2–3 photos under **Photographs** on the same screen.
+3. Publish. It appears on the CSR page automatically, with no new page needed.
+
+### Replace a menu or brochure PDF
+1. **Brands** → choose the brand → **Menu & brochure files**.
+2. Open the file and upload the new PDF.
+3. **Require OTP verification** controls whether visitors must confirm a code before downloading.
+
+Brochures only appear on brands whose investment block and brochure download are switched on.
+
+### Update investment figures
+1. Investment → **Brand models** (or **Brands** → the brand → **Investment models**).
+2. Enter the range, area requirement, payback and return ranges, and any assumptions.
+3. Tick **Figures confirmed in writing by Litensity** only once you have that confirmation. Until it's ticked, the
+   figures never appear on the website.
+
+### Change a number (stores, cities, team size…)
+- Numbers are edited inside the **Numbers** section of a page, or under **Brands** → the brand → **Brand numbers**.
+- Store, city and state counts can be set to **Auto**, which counts them from the Store Master so they never go out
+  of date.
+- Leave a value empty to hide that number.
+
+### Change contact details, WhatsApp, social links or the footer
+**Settings** →
+- **Company & contact**: address, phone, email, WhatsApp, the sticky Enquire button and analytics.
+- **Contact departments**: department emails and phones. You can also set which enquiry types each department is
+  alerted about.
+- **Social links**: links for the group and for each brand.
+- **Menus**: header and footer links.
+
+### Change how a page appears on Google and when shared
+**Settings** → **SEO & sharing**: the search title (about 50–60 characters), the description (about 150–160
+characters) and the social preview image for each page.
+
+### Add a new (fourth) brand
+1. **Brands** → **New brand**. Fill in the identity, logo, colours, typeface style, story and the on/off **Features**
+   (menu download, investment block, brochure, investment enquiry).
+2. Set **Status** to **Published**.
+3. The brand page, navigation, home page panels, brands hub, comparison table, map filters, footer and sitemap all
+   update on their own.
+4. Then add its stores, menu, gallery and downloads.
+
+No developer is needed for any of this.
 
 ---
 
-## How content works
+## 5. Where enquiries go
 
-### Admin at a glance
-| Area | What you do there |
-| --- | --- |
-| **Pages** | Visual page builder: drag sections to reorder, hide/show, duplicate, delete, add new blocks from a library, edit text/images inline — with a live desktop/tablet/mobile preview. "Brand pages" sets the layout shared by every brand. |
-| **Brands** | Identity, colours, story, feature switches; menu, gallery, downloads, campaigns, investment content as related cards. |
-| **Stores** | The Store Master (map, lists, filters, counts). |
-| About & team, Careers, CSR, Investment | Repeatable records (founders, roles, initiatives, models, FAQs). |
-| Leads | Delivery log for every form submission. |
-| Settings | Company & contact, forms & sheets, menus, social, departments, SEO, legal, admin users. |
+There are six ways visitors can get in touch. Each one goes to **its own Google Sheet**, sends an **alert email to
+your team** and sends a **thank-you email to the visitor**. Emails are sent from **hello@litensity.com**.
 
-Section types are designed components (`lib/sections/kinds.ts` + `components/sections/*`), so editors control
-content, order and visibility while layout quality stays consistent. Heroes are pinned to the top; data-driven blocks
-(store locator, forms, founders…) can appear once per page.
+| Form | Where it is | Google Sheet |
+| --- | --- | --- |
+| BIGGUYS investment | BIGGUYS brand page | Franchise Leads |
+| DCube investment | DCube brand page | Franchise Leads |
+| Menu / brochure download | Every brand page (behind OTP) | Downloads |
+| Litensity investor | Invest with Us | Investor |
+| Job application | Careers (with résumé upload) | Recruitment |
+| General + CSR enquiry | Contact, CSR | General Enquiry |
 
-### Sample content
-`npm run samples:load` fills the site for client previews and is safe to re-run:
-- CC0 / public-domain photographs from Wikimedia Commons (credits in each media item's title and in `scripts/sample-content.json`),
-  plus a 10-second muted group film loop cut from CC BY 3.0 Commons clips (`scripts/sample-media/`).
-- Sample copy, menus with prices, investment formats and ranges, FAQs, founders/leadership, jobs, CSR figures, store names,
-  delivery/social links and PDF menus/brochures (`scripts/sample-copy.mjs`).
+- Every row records the brand, the page and section it came from, and the date and time, without the visitor typing
+  any of it.
+- Columns to the right of the data are left empty for your team's own status tracking.
+- Résumés are kept private. The Recruitment sheet links to them, and only logged-in admins can open the link.
+- A download where the visitor never entered the code is still recorded and marked **Unverified**.
 
-Inserted rows are tracked in `sample_records`; any existing field it overwrites (usually a `[CLIENT CONTENT REQUIRED]`
-placeholder) is saved in `sample_field_backups`. **Admin → Dashboard → Remove sample content** restores those fields
-and deletes everything else in one click. **All sample figures are illustrative — never publish them.**
+**To choose who receives alerts:** **Settings** → **Forms & lead routing** → choose the form → set the
+**Internal recipients**, one email per line. You can also change the thank-you email text and the dropdown options
+(budget, timeline and so on).
 
-### Content rules
-- The site is a **renderer of CMS data**. Copy, imagery, stats, stores, brands, jobs, CSR, FAQs, SEO and settings come
-  from Supabase and are edited in `/admin`.
-- Saving in the admin revalidates the whole site immediately (ISR fallback: 5 minutes).
-- **Draft → Preview → Publish**: records have a status; "Preview incl. drafts" opens the site in draft mode (admins only).
-- Values containing `[CLIENT CONTENT REQUIRED]` show as dashed markers in development and are **hidden in production**.
-  The admin dashboard lists every remaining placeholder.
-- Investment figures render only when "Figures confirmed in writing" is ticked on the model.
-- Store counts (stores, cities, states) can be computed live from the Store Master.
-
-### Adding a fourth brand
-Admin → Brands → New brand: fill identity, colours, typeface preset and feature switches, set status to Published.
-The brand page, nav dropdown, home panels, hub, comparison strip, locator filters, footer and sitemap update automatically.
-Then add its stores, menu, gallery and downloads from the brand's edit screen.
+**If something didn't arrive:** **Inbox → Leads** shows every submission with a **Sheet** and **Email** status (sent,
+failed, skipped). Nothing is lost if Google or email is briefly down: the lead is always saved there.
+**Export to Excel** gives you a copy at any time.
 
 ---
 
-## Security notes
-- RLS on every table; anon reads published rows only; admin access via `admin_profiles` + `is_admin()`.
-- Admin pages and actions re-verify the session server-side (`requireAdmin()`); the proxy redirect is only a convenience.
-- Service-role key is imported only from `lib/supabase/admin.ts` (`server-only`).
-- Menus/brochures live in a private bucket and are released through 2-minute signed URLs after OTP.
-- Résumés are private; the Recruitment sheet links to an admin-only endpoint that issues a 60-second signed URL.
-- Forms: Zod validation (client + server), honeypot, minimum fill time, per-IP rate limits (Postgres-backed).
-- OTP: HMAC-hashed codes, 10-minute expiry, 45-second resend cooldown, 5 attempts, phone/destination/IP limits,
-  abandoned attempts remain "Unverified" in the Downloads sheet.
+## 6. Golden rules
+
+1. **Never publish a figure that Litensity hasn't confirmed in writing.** This covers investment amounts, returns,
+   payback, store counts and team size. The site is built to hide unconfirmed figures; please keep it that way.
+2. **Placeholders are hidden, not shown.** Any field that still says `[CLIENT CONTENT REQUIRED]` doesn't appear on
+   the live site. The Dashboard lists them all under **Content still required**.
+3. **Archive rather than delete.** Archived stores, jobs and initiatives can be brought back later.
+4. **Add alt text to images.** Alt text is a short description used by screen readers and search engines.
+5. **Use good photos.** Upload landscape images at least 2000 px wide where possible, and keep founder photos in the
+   same crop and style.
+6. **Sample content is for previews only.** Before launch, use **Dashboard → Remove sample content** to clear all
+   sample pictures, figures and text in one click.
+
+---
+
+## 7. Common questions
+
+**I saved a change but don't see it on the website.**
+Check that its **Status** is **Published** and, for page sections, that the section isn't hidden. Then refresh the
+page. If you still don't see it, wait a few minutes; changes can take up to five minutes to show.
+
+**A section is missing from a brand page.**
+Some sections only appear when they have content, or when the brand's **Features** switch is on. For example, the
+investment block needs **Investment / franchise block** switched on, plus published investment models.
+
+**Why is an investment figure not showing?**
+**Figures confirmed in writing by Litensity** hasn't been ticked on that model.
+
+**Why does the comparison table say "On request"?**
+**Ticket size confirmed in writing by Litensity** hasn't been ticked on the brand.
+
+**I forgot my password.**
+Ask an owner, or your developer, to reset it. There is no self-service reset yet.
+
+**Can I change fonts, colours or layouts freely?**
+Brand colours and typeface style are set per brand, and sections can be reordered, added or hidden. The design itself
+(spacing, animation, typography) is fixed on purpose, so the site keeps looking premium whoever edits it.
+
+---
+
+## 8. What we still need from Litensity
+
+The full checklist is in [`docs/CLIENT_INPUTS.md`](docs/CLIENT_INPUTS.md). In short:
+
+- **Accounts:** Google access for the five lead sheets; an email password or sending setup for
+  **hello@litensity.com**; the domain and hosting.
+- **Decisions:**
+  - OTP by email (current) or by SMS;
+  - which map provider to use for launch;
+  - whether menu downloads must stay behind OTP;
+  - whether to link to dcubedessertscafe.com;
+  - who receives alerts for each form;
+  - which analytics account to use.
+- **Content:**
+  - edited DCube photos (only camera RAW files so far) and Belgian Waffle photos;
+  - menu PDFs and franchise brochures;
+  - investment figures, with written confirmation;
+  - company story, milestones, founder photos and bios;
+  - CSR stories and photos;
+  - open roles;
+  - Privacy Policy and Terms text.
+
+Before launch: sample content removed, **Content still required** at zero, each form tested once on the live site,
+and every page checked on a real phone.

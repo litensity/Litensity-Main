@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
 import type { Metadata } from "next";
 import { adminDb, missingContentReport } from "@/lib/admin/data";
 import { requireAdmin } from "@/lib/admin/auth";
 import { Notices } from "@/components/admin/Notices";
 import { ConfirmButton } from "@/components/admin/ConfirmButton";
+import { DismissibleAlert } from "@/components/admin/DismissibleAlert";
 import { deleteRecord, removeSampleContent } from "@/app/admin/actions";
 
 export const metadata: Metadata = { title: "Dashboard" };
@@ -16,21 +18,22 @@ function daysAgo(days: number): string {
 }
 
 export default async function Dashboard({ searchParams }: PageProps<"/admin">) {
-  const [admin, sp, db] = await Promise.all([requireAdmin(), searchParams, adminDb()]);
+  const [admin, sp, db, jar] = await Promise.all([requireAdmin(), searchParams, adminDb(), cookies()]);
 
-  const [brands, liveStores, soonStores, openJobs, drafts, leadsWeek, failed, recent, missing, initiatives] = await Promise.all([
+  const [brands, liveStores, soonStores, openJobs, drafts, leadsWeek, recent, missing, initiatives] = await Promise.all([
     db.from("brands").select("id, name, status, slug, feature_investment").order("sort_order"),
     db.from("stores").select("*", { count: "exact", head: true }).eq("store_status", "live").eq("is_archived", false),
     db.from("stores").select("*", { count: "exact", head: true }).eq("store_status", "opening_soon").eq("is_archived", false),
     db.from("jobs").select("*", { count: "exact", head: true }).eq("is_open", true).eq("status", "published"),
     Promise.all(["brands", "products", "people", "jobs", "csr_initiatives", "investment_models", "downloads"].map((t) => db.from(t).select("*", { count: "exact", head: true }).eq("status", "draft"))),
     db.from("lead_submissions").select("*", { count: "exact", head: true }).gte("created_at", daysAgo(7)),
-    db.from("lead_submissions").select("*", { count: "exact", head: true }).or("sheet_status.eq.failed,email_status.eq.failed"),
     db.from("lead_submissions").select("id, form_key, brand_slug, email, created_at, sheet_status").order("created_at", { ascending: false }).limit(8),
     missingContentReport(),
     db.from("csr_initiatives").select("*", { count: "exact", head: true }),
   ]);
   const { count: sampleCount } = await db.from("sample_records").select("*", { count: "exact", head: true });
+  // A dismissed alert stays hidden until what it reports changes.
+  const sampleSignature = String(sampleCount ?? 0);
   const draftCount = drafts.reduce((sum, r) => sum + (r.count ?? 0), 0);
 
   const cards = [
@@ -64,26 +67,20 @@ export default async function Dashboard({ searchParams }: PageProps<"/admin">) {
       <Notices searchParams={sp} />
 
       {sp.samples === "removed" && <p className="a-alert a-alert-ok">All sample content has been removed.</p>}
-      {(sampleCount ?? 0) > 0 && (
-        <div className="a-alert a-alert-warn" style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center", justifyContent: "space-between" }}>
-          <span>
-            <strong>Sample content is loaded</strong> — {sampleCount} sample pictures and records are filling empty spots so you can preview the design.
-            Replace them with real content, or remove them all before launch.
-          </span>
-          <form action={removeSampleContent}>
-            <ConfirmButton message="Remove all sample pictures, products, gallery items, campaigns and initiatives? Your own content is not affected." className="a-btn a-btn-sm a-btn-danger">
-              Remove sample content
-            </ConfirmButton>
-          </form>
-        </div>
-      )}
-      {(failed.count ?? 0) > 0 && (
-        <p className="a-alert a-alert-bad">
-          {failed.count} lead{failed.count === 1 ? "" : "s"} failed to reach Google Sheets or email.{" "}
-          <Link className="a-link" href="/admin/r/leads?sheet_status=failed">
-            Review delivery log
-          </Link>
-        </p>
+      {(sampleCount ?? 0) > 0 && jar.get("dismiss_samples")?.value !== sampleSignature && (
+        <DismissibleAlert cookie="dismiss_samples" signature={sampleSignature} className="a-alert-warn">
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center", justifyContent: "space-between" }}>
+            <span>
+              <strong>Sample content is loaded</strong> — {sampleCount} sample pictures and records are filling empty spots so you can preview the design.
+              Replace them with real content, or remove them all before launch.
+            </span>
+            <form action={removeSampleContent}>
+              <ConfirmButton message="Remove all sample pictures, products, gallery items, campaigns and initiatives? Your own content is not affected." className="a-btn a-btn-sm a-btn-danger">
+                Remove sample content
+              </ConfirmButton>
+            </form>
+          </div>
+        </DismissibleAlert>
       )}
 
       <div className="a-cards">

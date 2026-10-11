@@ -1305,6 +1305,11 @@ export const RESOURCES: Resource[] = [
         label: "Sheet",
         options: ["sent", "failed", "skipped", "pending"].map((v) => ({ value: v, label: v })),
       },
+      {
+        name: "email_status",
+        label: "Email",
+        options: ["sent", "failed", "skipped", "pending"].map((v) => ({ value: v, label: v })),
+      },
     ],
     orderBy: [{ column: "created_at", ascending: false }],
     groups: [
