@@ -1,0 +1,324 @@
+@import "./tokens.css";
+
+/* =============================================================================
+   Reset
+   ============================================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol {
+  margin: 0;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img,
+picture,
+video,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--ember);
+  color: var(--cream);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* =============================================================================
+   Utilities
+   ============================================================================= */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  left: var(--gutter);
+  top: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--ink);
+  color: var(--cream);
+  transform: translateY(-200%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus {
+  transform: none;
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.italic {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+/* Dev-only marker for missing client content */
+.cms-missing {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  border: 1px dashed currentColor;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+/* =============================================================================
+   Reveal system — elements are visible by default and only start hidden when
+   the browser runs scripts, so content never disappears without JavaScript.
+   If the client bundle has not taken over (html.js-ready) within 2.5s, the
+   failsafe animation forces everything visible.
+   ============================================================================= */
+@media (scripting: enabled) {
+  :root [data-reveal] {
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out),
+      clip-path var(--dur-slow) var(--ease-out);
+    transition-delay: calc(var(--i, 0) * var(--stagger));
+  }
+
+  :root [data-reveal="up"]:not([data-shown]) {
+    opacity: 0;
+    transform: translate3d(0, 2.5rem, 0);
+  }
+
+  :root [data-reveal="fade"]:not([data-shown]) {
+    opacity: 0;
+  }
+
+  :root [data-reveal="image"] {
+    clip-path: inset(0 0 0 0);
+  }
+  :root [data-reveal="image"]:not([data-shown]) {
+    clip-path: inset(18% 8% 18% 8%);
+  }
+  :root [data-reveal="image"] > * {
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  :root [data-reveal="image"]:not([data-shown]) > * {
+    transform: scale(1.18);
+  }
+
+  :root [data-reveal="words"] .split-word > span {
+    transition: transform var(--dur-slow) var(--ease-out);
+    transition-delay: calc((var(--i, 0) + var(--w, 0)) * 55ms);
+  }
+  :root [data-reveal="words"]:not([data-shown]) .split-word > span {
+    transform: translate3d(0, 108%, 0);
+  }
+
+  /* Line-by-line heading reveal (hero), then the underline under the italic phrase draws in */
+  :root [data-reveal="lines"] .split-line > span {
+    transition: transform var(--dur-slow) var(--ease);
+    transition-delay: calc(var(--i, 0) * var(--stagger) + var(--l, 0) * 140ms);
+  }
+  :root [data-reveal="lines"]:not([data-shown]) .split-line > span {
+    transform: translate3d(0, 106%, 0);
+  }
+  :root [data-reveal="lines"] .draw-underline path {
+    transition: stroke-dashoffset var(--dur-slow) var(--ease);
+    transition-delay: calc(var(--lines, 1) * 140ms + 240ms);
+  }
+  :root [data-reveal="lines"]:not([data-shown]) .draw-underline path {
+    stroke-dashoffset: 1;
+  }
+
+  :root:not(.js-ready) [data-reveal],
+  :root:not(.js-ready) [data-reveal] .split-word > span,
+  :root:not(.js-ready) [data-reveal] .split-line > span,
+  :root:not(.js-ready) [data-reveal="image"] > * {
+    animation: reveal-failsafe 0s 2.5s forwards;
+  }
+  :root:not(.js-ready) [data-reveal] .draw-underline path {
+    animation: draw-failsafe 0s 2.5s forwards;
+  }
+}
+
+@keyframes draw-failsafe {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}
+
+/* Word-mask reveal for headings */
+.split-word {
+  display: inline-block;
+  overflow: clip;
+  overflow-clip-margin: 0.12em;
+  vertical-align: top;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.split-word > span {
+  display: inline-block;
+}
+
+/* Line-mask reveal: each line slides up inside its own clip */
+.split-line {
+  display: block;
+  overflow: clip;
+  overflow-clip-margin: 0.2em;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.split-line > span {
+  display: inline-block;
+}
+
+/* Hand-drawn stroke under an emphasised phrase */
+.underline-target {
+  position: relative;
+  display: inline-block;
+}
+.draw-underline {
+  position: absolute;
+  left: -0.02em;
+  right: 0.04em;
+  bottom: 0.02em;
+  width: calc(100% - 0.02em);
+  height: 0.16em;
+  overflow: visible;
+  pointer-events: none;
+}
+.draw-underline path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.045em;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  [data-reveal]:not([data-shown]),
+  [data-reveal] .split-word > span,
+  [data-reveal] .split-line > span,
+  [data-reveal="image"] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  [data-reveal] .draw-underline path {
+    stroke-dashoffset: 0 !important;
+  }
+}

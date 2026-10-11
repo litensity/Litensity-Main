@@ -1,0 +1,93 @@
+.dialog {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.dialog::backdrop {
+  background: rgb(22 17 13 / 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.dialog[open] {
+  animation: rise var(--dur-slow) var(--ease-out);
+}
+
+.dialog[open]::backdrop {
+  animation: fade 400ms var(--ease-out);
+}
+
+.panel {
+  background: var(--cream);
+  border-radius: 20px 20px 0 0;
+  max-height: 92svh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@media (min-width: 720px) {
+  .dialog {
+    margin: auto;
+  }
+  .md {
+    max-width: 560px;
+  }
+  .lg {
+    max-width: 880px;
+  }
+  .panel {
+    border-radius: 6px;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+
+.title {
+  font-size: var(--fs-lg);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: background var(--dur-fast);
+}
+
+.close:hover {
+  background: var(--paper-2);
+}
+
+.body {
+  padding: 1.5rem;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

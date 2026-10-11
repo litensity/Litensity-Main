@@ -1,0 +1,15 @@
+import { chromium } from "playwright-core";
+const dir = process.env.QA_OUT_DIR;
+const b = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe" });
+const p = await b.newPage({ viewport: { width: 1440, height: 1000 } });
+await p.goto("http://localhost:3000/admin/login", { waitUntil: "networkidle" });
+await p.fill('input[name="email"]', "admin@litensity.local");
+await p.fill('input[name="password"]', "Local-Dev-Password-2026");
+await p.click('button[type="submit"]');
+await p.waitForURL(/\/admin$/);
+await p.goto("http://localhost:3000/admin/r/brands", { waitUntil: "networkidle" });
+await p.locator("tbody tr", { hasText: "DCube" }).locator("a").first().click();
+await p.waitForURL(/brands\/[0-9a-f-]{36}/);
+await p.waitForLoadState("networkidle");
+await p.screenshot({ path: `${dir}/a-brand.png`, fullPage: true });
+await b.close();

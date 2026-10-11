@@ -1,0 +1,192 @@
+.hq {
+  display: grid;
+  gap: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .hq {
+    grid-template-columns: 5fr 6fr;
+    align-items: start;
+  }
+}
+
+/* Office map: full width under the address/channels row */
+.officeMap {
+  grid-column: 1 / -1;
+  height: clamp(260px, 45vw, 420px);
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--paper-2);
+}
+
+.hqMain {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.hqMain :global(.label) {
+  opacity: 0.6;
+}
+
+.hqName {
+  font-size: var(--fs-xl);
+  line-height: 1.1;
+}
+
+.address {
+  font-style: normal;
+  font-size: var(--fs-md);
+  opacity: 0.8;
+  max-width: 36ch;
+}
+
+.mapLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.channels {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .channels {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+.channels a {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transition:
+    background var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+
+.channels a:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.channels :global(.label) {
+  opacity: 0.6;
+}
+
+.channelValue {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  overflow-wrap: anywhere;
+}
+
+.departments {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .departments {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-md);
+  }
+}
+
+.department {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.deptName {
+  font-size: var(--fs-xl);
+}
+
+.deptDesc {
+  opacity: 0.75;
+}
+
+.deptLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  font-weight: 500;
+}
+
+.deptLinks a {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.formSection {
+  padding-block: var(--space-section);
+  background: var(--ink);
+  color: var(--paper);
+  --line: var(--line-on-dark);
+}
+
+.formGrid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 1000px) {
+  .formGrid {
+    grid-template-columns: 4fr 7fr;
+    gap: var(--space-xl);
+  }
+}
+
+.formSide {
+  display: grid;
+  gap: var(--space-md);
+  align-content: start;
+}
+
+.routing :global(.label) {
+  opacity: 0.6;
+  margin-bottom: 0.75rem;
+}
+
+.routing ul {
+  border-top: 1px solid var(--line);
+}
+
+.routing a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.routing a:hover {
+  transform: translateX(0.5rem);
+}
+
+.routing a > span {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.routing a > span span {
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+}

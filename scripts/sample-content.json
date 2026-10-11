@@ -1,0 +1,567 @@
+{
+  "_note": "Sample content for previews only. All photographs are CC0 / public domain from Wikimedia Commons. Remove from Admin → Dashboard → Remove sample content. The group film is cut from CC BY 3.0 clips on Wikimedia Commons (credited in its media title). Sample copy and figures live in scripts/sample-copy.mjs.",
+  "images": [
+    {
+      "key": "kfc-yangnyeom",
+      "title": "Yangnyeom Chicken",
+      "alt": "Glossy red-glazed Korean fried chicken pieces",
+      "caption": "Glazed, sticky, crunchy.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Startandstar",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Yangnyeom_Chicken_Korean_fried_chicken.jpg"
+    },
+    {
+      "key": "kfc-crispy",
+      "title": "Korean fried chicken in Korea",
+      "alt": "A pile of extra-crispy golden fried chicken",
+      "caption": "Double-fried for the crunch.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Startandstar",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Korean_fried_chicken_in_Korea.jpg"
+    },
+    {
+      "key": "kfc-bbq",
+      "title": "Korean fried chicken bbq",
+      "alt": "Golden fried chicken served in a box",
+      "caption": "Straight out of the fryer.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Startandstar",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Korean_fried_chicken_bbq.jpg"
+    },
+    {
+      "key": "kfc-bites",
+      "title": "Korean fried chicken with cheese flavor",
+      "alt": "Bite-sized fried chicken pieces in a steel pan with tongs",
+      "caption": "Made for sharing.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Fumikas Sagisavas",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Korean_fried_chicken_with_cheese_flavor_%28Chikin%29.jpg"
+    },
+    {
+      "key": "wings-platter",
+      "title": "Chicken wings and nuggets",
+      "alt": "Sauced chicken wings and nuggets with dips on a tray",
+      "caption": "Wings, dips, repeat.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Andy Li",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Chicken_wings_and_vegan_nuggets_-_Lost_Boys_Chicken_2023-11-12.jpg"
+    },
+    {
+      "key": "fries",
+      "title": "French fries",
+      "alt": "A basket of golden french fries on a restaurant table",
+      "caption": "The perfect side.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Yotam Nachum",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Bat_Yaar_French_Fries.jpg"
+    },
+    {
+      "key": "waffle-berries",
+      "title": "Belgian waffles and fruit",
+      "alt": "Belgian waffle topped with strawberries and banana on a dark plate",
+      "caption": "Berries on gold.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Andy Li",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Belgian_waffles_%26_fruit_-_Brewhouse_%26_Kitchen_2026-04-14.jpg"
+    },
+    {
+      "key": "waffle-chocolate",
+      "title": "Triple chocolate waffle",
+      "alt": "Round waffle drizzled with dark and white chocolate",
+      "caption": "Chocolate, three ways.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Andy Li",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/65/%22triple_chocolate%22_waffle_-_Wafflemeister_2024-08-25.jpg"
+    },
+    {
+      "key": "waffle-iron",
+      "title": "Liège waffle iron",
+      "alt": "Waffles baking in a cast-iron waffle maker",
+      "caption": "Baked to order.",
+      "tag": "Store",
+      "license": "cc0",
+      "creator": "Romaine",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Li%C3%A8ge_waffle_iron_in_Brussels-Central_railway_station_%28cropped%29.jpg"
+    },
+    {
+      "key": "waffle-iron-2",
+      "title": "Liège waffle iron (wide)",
+      "alt": "A row of waffle irons with fresh waffles",
+      "caption": "Fresh off the iron.",
+      "tag": "Store",
+      "license": "cc0",
+      "creator": "Romaine",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Li%C3%A8ge_waffle_iron_in_Brussels-Central_railway_station.jpg"
+    },
+    {
+      "key": "donut-chocolate",
+      "title": "Glazed doughnut",
+      "alt": "A chocolate-glazed doughnut on a white background",
+      "caption": "Glazed to order.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Unknown author",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/95/Glazed_doughnut_%281387333%29.jpg"
+    },
+    {
+      "key": "donut-twist",
+      "title": "Twisted doughnut",
+      "alt": "Sugar-glazed twisted doughnuts in a paper bag",
+      "caption": "A sweet little twist.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Obsidian Soul",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Shakoy_doughnut.jpg"
+    },
+    {
+      "key": "donut-filled",
+      "title": "Filled doughnuts",
+      "alt": "Round doughnuts with a purple filling on a white plate",
+      "caption": "Something special inside.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Obsidian Soul",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Philippine_bu%C3%B1uelo_%28bunwelo%29_doughnuts_with_ube_filling.jpg"
+    },
+    {
+      "key": "croissant",
+      "title": "Loaded croissant",
+      "alt": "A filled croissant with a side salad",
+      "caption": "Flaky, buttery, loaded.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Andy Li",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Croissant_with_egg_and_mushrooms_-_The_Mad_Hatter.jpg"
+    },
+    {
+      "key": "sundae-brownie",
+      "title": "Brownie sundae",
+      "alt": "Ice cream sundae with a cherry beside a chocolate brownie",
+      "caption": "Dessert, your way.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Missvain",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Little_River_Inn_Restaurant_-_March_2025_-_Sarah_Stierch_06.jpg"
+    },
+    {
+      "key": "sundae-sprinkles",
+      "title": "Sundae with sprinkles",
+      "alt": "A cup of ice cream covered in rainbow sprinkles",
+      "caption": "More sprinkles, always.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Daderot",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Butterscotch_sundae_with_chocolate_chip_ice_cream_and_jimmies_-_Massachusetts.jpg"
+    },
+    {
+      "key": "shake-strawberry",
+      "title": "Strawberry milkshake",
+      "alt": "A tall milkshake topped with whipped cream and a cherry",
+      "caption": "Whipped and topped.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Julianibarra",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Strawberry_Milkshake_at_Jerry%27s_Nugget_Casino_in_North_Las_Vegas.jpg"
+    },
+    {
+      "key": "shake-cookies",
+      "title": "Cookies and cream milkshake",
+      "alt": "A cookies and cream milkshake in a glass mug on a café table",
+      "caption": "Cookies & cream.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Andy Li",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Oreo_milkshake_-_Creperie_Doux_Sourire_2025-05-03.jpg"
+    },
+    {
+      "key": "interior-paris",
+      "title": "Restaurant interior",
+      "alt": "A warm, busy restaurant interior with a long bar and chandeliers",
+      "caption": null,
+      "tag": "Store",
+      "license": "cc0",
+      "creator": "Gerda Arendt",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Restaurant_interior%2C_Paris.jpg"
+    },
+    {
+      "key": "interior-yellow",
+      "title": "Casual restaurant interior",
+      "alt": "Bright casual restaurant seating with a yellow feature wall",
+      "caption": "Pull up a chair.",
+      "tag": "Store",
+      "license": "cc0",
+      "creator": "Alexis Doine",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Hijo_De_Su_Madre_%28restaurant%29%2C_interior.JPG"
+    },
+    {
+      "key": "interior-booth",
+      "title": "Modern restaurant booths",
+      "alt": "Modern restaurant booths with orange seating and warm lights",
+      "caption": "Seats for the whole squad.",
+      "tag": "Store",
+      "license": "cc0",
+      "creator": "Shadlowum HWOWMOOA",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/SZ_%E6%B7%B1%E5%9C%B3_Shenzhen_%E5%85%89%E6%98%8E%E6%96%B0%E5%8D%80_Guangming_N_%E6%AC%A1%E6%96%B9%E5%85%AC%E5%9C%92%E5%95%86%E5%A0%B4_N_Square_Park_Mall_shop_%E8%81%96%E7%90%BC%E9%9F%93%E5%BC%8F%E7%83%A4%E8%82%89%E8%87%AA%E5%8A%A9%E9%A4%90%E5%BB%B3_Saint_Joan_Korean_Barbecue_Beef_Buffet_Restaurant_interior_furniture_seats_n_table_March_2026_N13P_01.jpg"
+    },
+    {
+      "key": "cafe-counter",
+      "title": "Café counter",
+      "alt": "A bright café counter with a dessert display case",
+      "caption": "Counter stories.",
+      "tag": "Store",
+      "license": "cc0",
+      "creator": "Alison Newman",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Platform_3854_cafe_interior_%E2%80%94_April_2022.jpg"
+    },
+    {
+      "key": "cafe-warm",
+      "title": "Warm café interior",
+      "alt": "Cosy café interior with warm lighting and wooden tables",
+      "caption": null,
+      "tag": "Store",
+      "license": "cc0",
+      "creator": "Mjrmtg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Fiore%27s_Cafe_interior%2C_Ocala.jpg"
+    },
+    {
+      "key": "csr-volunteers",
+      "title": "Food bank volunteers",
+      "alt": "Volunteers in high-visibility vests packing food boxes",
+      "caption": "Hands on deck.",
+      "tag": "CSR",
+      "license": "cc0",
+      "creator": "VicBP4lm4",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Houston_Food_Bank_Distrubucion_2010.jpg"
+    },
+    {
+      "key": "csr-warehouse",
+      "title": "Food bank warehouse",
+      "alt": "Pallets of packed food in a large food bank warehouse",
+      "caption": "Stocked and ready.",
+      "tag": "CSR",
+      "license": "cc0",
+      "creator": "Renanville",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/06/Food_Bank_of_the_Rio_Grande_Valley.jpg"
+    },
+    {
+      "key": "csr-garden",
+      "title": "Community garden",
+      "alt": "Colourful painted raised garden beds outside a brick building",
+      "caption": "Growing together.",
+      "tag": "CSR",
+      "license": "cc0",
+      "creator": "Aliceinthealice",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Drill_Hall_Community_Garden_in_Melbourne_01.jpg"
+    },
+    {
+      "key": "csr-soup",
+      "title": "Lentil vegetable soup",
+      "alt": "A bowl of hearty lentil and vegetable soup",
+      "caption": "A warm meal.",
+      "tag": "CSR",
+      "license": "cc0",
+      "creator": "Mx. Granger",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Amy%27s_lentil_vegetable_soup.jpg"
+    },
+    {
+      "key": "barista-latte",
+      "title": "Barista pouring milk",
+      "alt": "A barista pouring steamed milk into a latte",
+      "caption": "Craft, every cup.",
+      "tag": "Team",
+      "license": "cc0",
+      "creator": "Tim Wright",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Barista_pouring_milk_%28Unsplash%29.jpg"
+    },
+    {
+      "key": "barista-pour",
+      "title": "Barista at work",
+      "alt": "A barista pouring coffee at an espresso machine",
+      "caption": "Behind the counter.",
+      "tag": "Team",
+      "license": "cc0",
+      "creator": "James Sutton",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Barista_pouring_coffee_%28Unsplash%29.jpg"
+    },
+    {
+      "key": "friends-table",
+      "title": "Friends sharing lunch",
+      "alt": "Overhead view of friends sharing burgers, fries and drinks at a café table",
+      "caption": "Pull up a chair.",
+      "tag": "Store",
+      "license": "cc0",
+      "creator": "Dan Gold (Unsplash)",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Friends_eating_lunch_in_diner_%28Unsplash%29.jpg"
+    },
+    {
+      "key": "restaurant-crew",
+      "title": "Restaurant crew",
+      "alt": "A restaurant crew talking together behind a dimly lit counter",
+      "caption": "The team behind the counter.",
+      "tag": "Team",
+      "license": "cc0",
+      "creator": "Ali Yahya (Unsplash)",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Restaurant_crew_socializing_%28Unsplash_VCJgvwJbC50%29.jpg"
+    },
+    {
+      "key": "ice-cream-dessert",
+      "title": "Ice cream dessert",
+      "alt": "A plated ice cream dessert with toppings",
+      "caption": "Built to order.",
+      "tag": "Product",
+      "license": "cc0",
+      "creator": "Alex Jones (Unsplash)",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Ice_Cream_Dessert_%28Unsplash%29.jpg"
+    }
+  ],
+  "brands": {
+    "bigguys": {
+      "hero": "kfc-yangnyeom",
+      "card": "kfc-crispy"
+    },
+    "belgian-waffle": {
+      "hero": "waffle-berries",
+      "card": "waffle-chocolate"
+    },
+    "dcube": {
+      "hero": "sundae-sprinkles",
+      "card": "sundae-brownie"
+    }
+  },
+  "sections": {
+    "home/hero": "hero-film-poster",
+    "about/hero": "friends-table",
+    "about/story": "cafe-warm",
+    "careers/hero": "restaurant-crew",
+    "home/csr": "csr-soup",
+    "csr/hero": "csr-volunteers"
+  },
+  "galleries": [
+    {
+      "collection": "brand",
+      "brand": "bigguys",
+      "images": [
+        "kfc-bbq",
+        "kfc-bites",
+        "wings-platter",
+        "fries",
+        "interior-booth"
+      ]
+    },
+    {
+      "collection": "brand",
+      "brand": "belgian-waffle",
+      "images": [
+        "waffle-iron",
+        "waffle-chocolate",
+        "waffle-iron-2",
+        "cafe-counter"
+      ]
+    },
+    {
+      "collection": "brand",
+      "brand": "dcube",
+      "images": [
+        "donut-twist",
+        "shake-cookies",
+        "croissant",
+        "sundae-sprinkles",
+        "donut-filled",
+        "cafe-counter"
+      ]
+    },
+    {
+      "collection": "careers",
+      "images": [
+        "barista-latte",
+        "interior-yellow",
+        "cafe-counter",
+        "waffle-iron-2",
+        "interior-booth"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "brand": "bigguys",
+      "category": "Signature fried chicken",
+      "name": "Yangnyeom Glazed Chicken",
+      "description": "Sample item — sweet, spicy and sticky Korean glaze over double-fried chicken.",
+      "bestseller": true,
+      "image": "kfc-yangnyeom"
+    },
+    {
+      "brand": "bigguys",
+      "category": "Signature fried chicken",
+      "name": "Crispy Original",
+      "description": "Sample item — the extra-crunchy classic, seasoned simply.",
+      "bestseller": true,
+      "image": "kfc-crispy"
+    },
+    {
+      "brand": "bigguys",
+      "category": "Signature fried chicken",
+      "name": "Chicken Bites Bucket",
+      "description": "Sample item — bite-sized pieces made for sharing.",
+      "image": "kfc-bites"
+    },
+    {
+      "brand": "bigguys",
+      "category": "Sides & dips",
+      "name": "Seasoned Fries",
+      "description": "Sample item — golden fries with house seasoning.",
+      "image": "fries"
+    },
+    {
+      "brand": "belgian-waffle",
+      "category": "Waffles",
+      "name": "Berry Bliss Waffle",
+      "description": "Sample item — strawberries and banana on a golden waffle.",
+      "bestseller": true,
+      "image": "waffle-berries"
+    },
+    {
+      "brand": "belgian-waffle",
+      "category": "Waffles",
+      "name": "Triple Chocolate Waffle",
+      "description": "Sample item — dark, milk and white chocolate drizzle.",
+      "bestseller": true,
+      "image": "waffle-chocolate"
+    },
+    {
+      "brand": "belgian-waffle",
+      "category": "Waffles",
+      "name": "Classic Golden Waffle",
+      "description": "Sample item — crisp outside, soft inside, fresh off the iron.",
+      "image": "waffle-iron"
+    },
+    {
+      "brand": "dcube",
+      "category": "Donuts",
+      "name": "Chocolate Glazed Donut",
+      "description": "Sample item — a soft donut dipped in chocolate glaze.",
+      "bestseller": true,
+      "image": "donut-chocolate"
+    },
+    {
+      "brand": "dcube",
+      "category": "Donuts",
+      "name": "Sugar Twist",
+      "description": "Sample item — a sugar-glazed twist.",
+      "image": "donut-twist"
+    },
+    {
+      "brand": "dcube",
+      "category": "Croissants",
+      "name": "Loaded Croissant",
+      "description": "Sample item — a flaky croissant with savoury filling.",
+      "image": "croissant"
+    },
+    {
+      "brand": "dcube",
+      "category": "Ice cream",
+      "name": "Brownie Sundae",
+      "description": "Sample item — ice cream, cherry and a warm brownie.",
+      "bestseller": true,
+      "image": "sundae-brownie"
+    },
+    {
+      "brand": "dcube",
+      "category": "Ice cream",
+      "name": "Sprinkle Sundae",
+      "description": "Sample item — build your own with toppings.",
+      "image": "sundae-sprinkles"
+    },
+    {
+      "brand": "dcube",
+      "category": "Beverages",
+      "name": "Cookies & Cream Shake",
+      "description": "Sample item — thick, creamy and crunchy.",
+      "bestseller": true,
+      "image": "shake-cookies"
+    },
+    {
+      "brand": "dcube",
+      "category": "Beverages",
+      "name": "Strawberry Shake",
+      "description": "Sample item — topped with whipped cream.",
+      "image": "shake-strawberry"
+    },
+    {
+      "brand": "dcube",
+      "category": "Waffles",
+      "name": "Build-your-own Waffle",
+      "description": "Sample item — pick your base, spreads and toppings.",
+      "image": "waffle-chocolate"
+    }
+  ],
+  "campaigns": [
+    {
+      "brand": "bigguys",
+      "kind": "launch",
+      "title": "Sample launch spotlight",
+      "body": "Placeholder campaign to preview this layout — replace it with a real launch in Admin → Brands → Campaigns.",
+      "image": "wings-platter"
+    },
+    {
+      "brand": "dcube",
+      "kind": "programme",
+      "title": "Sample programme spotlight",
+      "body": "Placeholder to preview how a loyalty or content programme is presented — replace with real details.",
+      "image": "shake-strawberry"
+    }
+  ],
+  "csr": [
+    {
+      "title": "Sample initiative · Community meal drive",
+      "location": "Sample location",
+      "description": "Placeholder initiative to preview the CSR layout. Replace it with a real Litensity initiative — what happened, where, when and the impact — and its photographs.",
+      "images": [
+        "csr-soup",
+        "csr-warehouse",
+        "csr-volunteers"
+      ]
+    },
+    {
+      "title": "Sample initiative · Neighbourhood garden",
+      "location": "Sample location",
+      "description": "A second placeholder so the alternating layout can be previewed. Delete or replace it from Admin → CSR → Initiatives.",
+      "images": [
+        "csr-garden"
+      ]
+    }
+  ],
+  "sectionVideos": {
+    "home/hero": "hero-film"
+  },
+  "localMedia": [
+    {
+      "key": "hero-film",
+      "file": "sample-media/hero-film.mp4",
+      "kind": "video",
+      "mime": "video/mp4",
+      "width": 1280,
+      "height": 720,
+      "alt": "Caramel batter pouring onto a waffle iron, fried chicken lifted from the fryer and a spiced chicken cutlet",
+      "title": "Sample · Group film loop (cut from CC BY 3.0 Wikimedia Commons clips: 'Food and Drink Wales - Tregroes Waffles' and Lee Kum Kee 'Crispy fried chicken cutlet')"
+    },
+    {
+      "key": "hero-film-poster",
+      "file": "sample-media/hero-film-poster.jpg",
+      "kind": "image",
+      "mime": "image/jpeg",
+      "width": 1280,
+      "height": 720,
+      "alt": "Caramel batter pouring onto a waffle iron",
+      "title": "Sample · Group film poster frame"
+    }
+  ]
+}

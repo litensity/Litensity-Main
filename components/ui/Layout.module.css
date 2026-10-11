@@ -1,0 +1,59 @@
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.wide {
+  max-width: none;
+}
+
+.section {
+  position: relative;
+}
+
+.space-default {
+  padding-block: var(--space-section);
+}
+.space-tight {
+  padding-block: var(--space-xl);
+}
+.space-none {
+  padding-block: 0;
+}
+
+.tone-paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+.tone-cream {
+  background: var(--cream);
+  color: var(--ink);
+}
+.tone-ink {
+  background: var(--ink);
+  color: var(--paper);
+  --line: var(--line-on-dark);
+}
+.tone-ember {
+  background: var(--ember);
+  color: var(--cream);
+  --line: rgb(251 248 243 / 0.25);
+}
+.tone-brand {
+  background: var(--brand);
+  color: var(--brand-contrast);
+  --line: color-mix(in oklab, var(--brand-contrast) 25%, transparent);
+}
+.tone-brand-surface {
+  background: var(--brand-surface);
+  color: var(--brand-ink);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  opacity: 0.8;
+}

@@ -1,0 +1,151 @@
+.jobFilters {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: var(--space-md);
+}
+
+.jobFilter {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.jobFilter ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.jobFilter a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition:
+    background var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out);
+}
+
+.jobFilter a:hover {
+  border-color: var(--ink);
+}
+
+.jobFilter a[aria-current="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.jobCount {
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+
+.jobMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.jobMeta span + span::before {
+  content: "·";
+  margin-right: 1rem;
+  opacity: 0.5;
+}
+
+.jobBody {
+  display: grid;
+  gap: 1rem;
+}
+
+.jobSummary {
+  font-size: var(--fs-md);
+}
+
+.apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  justify-self: start;
+  min-height: 48px;
+  padding: 0 1.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--cream);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+}
+
+.noRoles {
+  padding: 2rem 0;
+  font-size: var(--fs-md);
+  opacity: 0.75;
+}
+
+.applySection {
+  padding-block: var(--space-section);
+  background: var(--ink);
+  color: var(--paper);
+  --line: var(--line-on-dark);
+  scroll-margin-top: var(--header-h);
+}
+
+.applyGrid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 1000px) {
+  .applyGrid {
+    grid-template-columns: 4fr 7fr;
+    gap: var(--space-xl);
+  }
+}
+
+/* Role page (/careers/[id]): details beside the application form */
+.roleDetails {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  max-width: 40rem;
+  line-height: 1.6;
+}
+
+.roleDetails h2 {
+  margin-top: 1rem;
+}
+
+@media (min-width: 1000px) {
+  .roleDetails {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+}
+
+.formTitle {
+  margin-bottom: var(--space-md);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  line-height: 1.05;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+  min-height: 44px;
+  margin-top: 1rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.backIcon {
+  transform: rotate(180deg);
+}

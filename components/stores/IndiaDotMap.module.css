@@ -1,0 +1,84 @@
+.map {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.land {
+  fill: color-mix(in oklab, currentColor 5%, transparent);
+}
+
+.gridDot {
+  fill: color-mix(in oklab, currentColor 22%, transparent);
+}
+
+.outline {
+  fill: none;
+  stroke: color-mix(in oklab, currentColor 35%, transparent);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.pin {
+  fill: var(--c);
+  stroke: var(--paper);
+  stroke-width: 2.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--dur) var(--ease);
+}
+
+.hit {
+  fill: transparent;
+}
+
+.pinLink {
+  cursor: pointer;
+  outline: none;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.pinLink:hover .pin,
+.pinLink:focus-visible .pin,
+.pinLink[data-current] .pin {
+  transform: scale(1.45);
+}
+
+.pinLink:focus-visible .hit {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+/* Filtered out by a brand chip */
+.pinLink[data-dim] {
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* A gentle, staggered breath — never all at once */
+.pulse {
+  fill: var(--c);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 4.2s var(--ease) infinite;
+  animation-delay: calc(var(--i) * 330ms);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.32;
+    transform: scale(0.4);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    display: none;
+  }
+}

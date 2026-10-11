@@ -1,0 +1,150 @@
+.hero {
+  position: relative;
+  background: var(--brand);
+  color: var(--brand-contrast);
+  overflow: clip;
+}
+
+.inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: calc(var(--header-h) + clamp(1.5rem, 4vw, 3rem)) var(--gutter) clamp(2rem, 4vw, 3.5rem);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--brand-contrast) 25%, transparent);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.category {
+  font-size: var(--fs-sm);
+  opacity: 0.85;
+}
+
+.meta,
+.foot {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 900px) {
+  /* These rows overlap the 3D object's box; let the pointer through, keep real controls clickable. */
+  .meta,
+  .foot {
+    pointer-events: none;
+  }
+
+  .meta a,
+  .foot a,
+  .foot button {
+    pointer-events: auto;
+  }
+}
+
+.name {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+  font-family: var(--font-brand);
+  font-size: clamp(3.6rem, 0.8rem + 13vw, 15rem);
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+[data-typeface="condensed"] .name {
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  font-weight: 900;
+  font-size: clamp(4.5rem, 0.5rem + 19vw, 21rem);
+}
+
+[data-typeface="serif"] .name {
+  font-weight: 400;
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+}
+
+[data-typeface="grotesk"] .name {
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.logo {
+  width: auto;
+  max-width: min(100%, 900px);
+  height: clamp(5rem, 16vw, 14rem);
+  object-fit: contain;
+  object-position: left center;
+}
+
+.foot {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+@media (min-width: 900px) {
+  .foot {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.tagline {
+  max-width: 28ch;
+  font-size: var(--fs-xl);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.visual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  margin-inline: var(--gutter);
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+@media (min-width: 720px) {
+  .visual {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+.visual > div {
+  position: absolute;
+  inset: 0;
+}

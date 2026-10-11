@@ -1,0 +1,439 @@
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + clamp(1rem, 3vw, 2.5rem));
+  background: var(--paper);
+  overflow: clip;
+}
+
+.top {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.brandDots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  font-size: var(--fs-sm);
+}
+
+.brandDots li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brandDots li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.brandDots a {
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.brandDots a:hover {
+  color: var(--dot);
+}
+
+/* Stage: copy + brand panels */
+.stage {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+@media (min-width: 1100px) {
+  .hero[data-layout="panels"] .stage {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: clamp(2rem, 3.5vw, 3.5rem);
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+.headline {
+  position: relative;
+}
+
+/* 3D brand objects (alternative layout): a band under the headline on phones, beside it on desktop */
+.scene {
+  height: clamp(240px, 70vw, 340px);
+  margin: 0.5rem calc(var(--gutter) * -1) -1rem;
+}
+
+@media (min-width: 900px) {
+  .scene {
+    position: absolute;
+    top: -14%;
+    right: -2%;
+    width: 52%;
+    height: 135%;
+    margin: 0;
+  }
+
+  /*
+   * The scene overlaps the headline and the lede row. Those later-painted layers would
+   * swallow the pointer, so they let it through to the 3D objects; real controls opt back in.
+   */
+  .hero[data-layout="3d"] .title,
+  .hero[data-layout="3d"] .lede {
+    pointer-events: none;
+  }
+
+  .hero[data-layout="3d"] .lede a,
+  .hero[data-layout="3d"] .lede button {
+    pointer-events: auto;
+  }
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-hero);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  font-variation-settings: "SOFT" 30, "WONK" 0, "opsz" 144;
+  font-weight: 380;
+  max-width: 14ch;
+}
+
+@media (min-width: 1100px) {
+  .hero[data-layout="panels"] .title {
+    font-size: clamp(4.25rem, 1rem + 6vw, 8.75rem);
+  }
+}
+
+.title :global(.italic) {
+  font-weight: 300;
+  color: var(--ember);
+}
+
+.lede {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .hero:not([data-layout="panels"]) .lede {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) auto;
+    align-items: end;
+  }
+  .hero[data-layout="panels"] .lede {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+  .hero[data-layout="panels"] .lede > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.body {
+  max-width: 40ch;
+  font-size: var(--fs-md);
+  color: var(--ink-soft);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.scrollCue {
+  display: none;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.scrollCue:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+@media (min-width: 900px) {
+  .scrollCue {
+    display: grid;
+  }
+}
+
+/* ---------------------------------------------------------------- Brand panels */
+.panels {
+  display: flex;
+  gap: clamp(0.4rem, 0.8vw, 0.75rem);
+  height: clamp(300px, 86vw, 440px);
+  margin: 0;
+}
+
+@media (min-width: 700px) {
+  .panels {
+    height: clamp(360px, 52vw, 520px);
+  }
+}
+
+@media (min-width: 1100px) {
+  .panels {
+    height: auto;
+    min-height: clamp(460px, 60svh, 580px);
+  }
+}
+
+.panelItem {
+  flex: 1 1 0;
+  min-width: 0;
+  transition: flex-grow var(--dur-slow) var(--ease);
+}
+
+/* Hover/focus expands one panel and narrows the others */
+@media (hover: hover) and (min-width: 700px) {
+  .panels:has(.panelItem:hover) .panelItem,
+  .panels:has(.panelItem:focus-within) .panelItem {
+    flex-grow: 0.72;
+  }
+  .panels .panelItem:hover,
+  .panels .panelItem:focus-within {
+    flex-grow: 1.9;
+  }
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: clamp(0.85rem, 1.6vw, 1.25rem);
+  border-radius: 6px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--brand);
+  color: var(--brand-contrast);
+}
+
+.panelMedia {
+  z-index: -2;
+  transform: scale(1.04);
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.panelItem:hover .panelMedia,
+.panelItem:focus-within .panelMedia {
+  transform: scale(1);
+}
+
+/* Brand-colour wash ties three different photographs into one system */
+.panelWash {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to top, var(--brand) 0%, color-mix(in oklab, var(--brand) 78%, transparent) 26%, transparent 62%),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.28), transparent 30%);
+}
+
+.panelIndex {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.panelText {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.panelName {
+  font-family: var(--font-brand);
+  font-size: clamp(1.15rem, 0.7rem + 1.9vw, 2.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+
+/* Long names step down so they fit on two lines in a narrow panel */
+.panelName[data-long] {
+  font-size: clamp(0.9rem, 0.25rem + 1.2vw, 1.85rem);
+  letter-spacing: -0.035em;
+  overflow-wrap: normal;
+}
+
+[data-typeface="condensed"] .panelName {
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.005em;
+}
+
+[data-typeface="serif"] .panelName {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+}
+
+[data-typeface="grotesk"] .panelName {
+  font-weight: 600;
+}
+
+.panelTagline {
+  display: none;
+  max-width: 28ch;
+  font-size: var(--fs-sm);
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+@media (min-width: 1100px) {
+  .panelTagline {
+    display: block;
+  }
+  .panelItem:hover .panelTagline,
+  .panelItem:focus-within .panelTagline {
+    opacity: 0.92;
+    transform: none;
+  }
+}
+
+.panelArrow {
+  position: absolute;
+  top: clamp(0.85rem, 1.6vw, 1.25rem);
+  right: clamp(0.85rem, 1.6vw, 1.25rem);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand-contrast);
+  color: var(--brand-text);
+  transition: transform var(--dur) var(--ease);
+}
+
+.panelItem:hover .panelArrow,
+.panelItem:focus-within .panelArrow {
+  transform: rotate(45deg);
+}
+
+/* Panels rise in one after another on load */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .panelItem {
+    animation: panel-in var(--dur-slow) var(--ease) both;
+    animation-delay: calc(320ms + var(--i) * 90ms);
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+  }
+}
+
+/* ---------------------------------------------------------------- Film */
+.visualWrap {
+  padding-inline: var(--gutter);
+}
+
+.visual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+}
+
+@media (min-width: 720px) {
+  .visual {
+    aspect-ratio: 16 / 8;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .visualWrap {
+      animation: bleed linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+    .visual {
+      animation: unround linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+  }
+}
+
+@keyframes bleed {
+  to {
+    padding-inline: 0;
+  }
+}
+
+@keyframes unround {
+  to {
+    border-radius: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- Brand marquee */
+.marquee {
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-right: clamp(1.5rem, 4vw, 4rem);
+  font-family: var(--font-brand);
+  font-size: var(--fs-2xl);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: var(--ink);
+  transition: color var(--dur) var(--ease);
+}
+
+.marqueeItem:hover,
+.marqueeItem:focus-visible {
+  color: var(--brand-text);
+}
+
+.marqueeStar {
+  color: var(--brand-text);
+  flex-shrink: 0;
+  transition: transform var(--dur) var(--ease);
+}
+
+.marqueeItem:hover .marqueeStar {
+  transform: rotate(90deg);
+}

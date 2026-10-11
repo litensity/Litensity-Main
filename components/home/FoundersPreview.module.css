@@ -1,0 +1,58 @@
+.head {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 900px) {
+  .head {
+    grid-template-columns: 7fr 4fr;
+    align-items: end;
+  }
+}
+
+.heading {
+  margin-top: 1.25rem;
+  font-size: var(--fs-3xl);
+  line-height: 0.95;
+}
+
+.side {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+.body {
+  color: var(--ink-soft);
+  max-width: 34ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-md) clamp(1rem, 3vw, 3rem);
+}
+
+/* Off-beat rhythm: every other portrait sits lower on wide screens */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+  }
+  .grid[data-count="1"] {
+    --cols: 2;
+  }
+  .grid[data-count="2"] {
+    --cols: 3;
+  }
+  .grid[data-count="4"] {
+    --cols: 4;
+  }
+  .item:nth-child(even) {
+    margin-top: var(--space-xl);
+  }
+}
+
+.item {
+  display: block;
+}

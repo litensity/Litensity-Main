@@ -1,0 +1,336 @@
+/* Story ------------------------------------------------------------------ */
+.story {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 900px) {
+  .story {
+    grid-template-columns: 6fr 5fr;
+    align-items: start;
+    gap: var(--space-xl);
+  }
+  .story > header {
+    position: sticky;
+    top: calc(var(--header-h) + 5rem);
+    margin-bottom: 0;
+  }
+}
+
+.storyBody {
+  display: grid;
+  gap: 1.25rem;
+  font-size: var(--fs-md);
+}
+
+.lead {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.pull {
+  margin: 1rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--brand);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-lg);
+  line-height: 1.3;
+}
+
+.pillars {
+  display: grid;
+  gap: 0;
+  margin-top: 1rem;
+  border-top: 1px solid color-mix(in oklab, var(--brand-ink) 18%, transparent);
+}
+
+.pillars li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--brand-ink) 18%, transparent);
+  color: var(--brand-ink);
+}
+
+.pillars svg {
+  color: var(--brand-text);
+  margin-top: 0.15rem;
+}
+
+.pillarTitle {
+  font-weight: 600;
+}
+
+.pillarBody {
+  font-size: var(--fs-sm);
+  opacity: 0.75;
+}
+
+/* Highlights -------------------------------------------------------------- */
+.highlights {
+  padding-block: var(--space-lg);
+  background: var(--brand-ink);
+  color: var(--brand-surface);
+  --line: color-mix(in oklab, var(--brand-surface) 18%, transparent);
+}
+
+/* Campaigns --------------------------------------------------------------- */
+/* A launch poster in the brand's own darkest colour. */
+.campaignBand[data-tone] {
+  background: var(--brand-ink);
+  color: var(--brand-surface);
+  overflow: clip;
+}
+
+.ticker {
+  margin-block: var(--space-md) var(--space-lg);
+  padding-block: clamp(0.75rem, 1.5vw, 1.25rem);
+  border-block: 1px solid color-mix(in oklab, var(--brand-surface) 18%, transparent);
+}
+
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  padding-right: clamp(1.25rem, 3vw, 2.75rem);
+  font-family: var(--font-brand);
+  font-size: var(--fs-3xl);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: var(--brand-on-dark);
+}
+
+[data-typeface="condensed"] :is(.tickerItem, .leadTitle, .moreTitle) {
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+[data-typeface="grotesk"] :is(.tickerItem, .leadTitle, .moreTitle) {
+  font-weight: 700;
+}
+
+.tickerMark {
+  flex: none;
+  color: var(--brand-surface);
+  opacity: 0.55;
+}
+
+.lead {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 900px) {
+  .lead {
+    grid-template-columns: 7fr 5fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+}
+
+.leadMedia {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .leadMedia {
+    aspect-ratio: 5 / 4;
+  }
+}
+
+.campaignTag {
+  position: absolute;
+  top: clamp(0.75rem, 1.5vw, 1.25rem);
+  left: clamp(0.75rem, 1.5vw, 1.25rem);
+  z-index: 2;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  color: var(--brand-contrast);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.leadText {
+  display: grid;
+  gap: var(--space-sm);
+  justify-items: start;
+  padding-bottom: 0.25rem;
+}
+
+.leadTitle {
+  font-family: var(--font-brand);
+  font-size: var(--fs-2xl);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.leadBody {
+  max-width: 40ch;
+  font-size: var(--fs-md);
+  color: color-mix(in oklab, var(--brand-surface) 80%, var(--brand-ink));
+}
+
+.moreCampaigns {
+  display: grid;
+  margin-top: var(--space-lg);
+  border-top: 1px solid color-mix(in oklab, var(--brand-surface) 18%, transparent);
+}
+
+@media (min-width: 900px) {
+  .moreCampaigns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-lg);
+  }
+}
+
+.moreCampaign {
+  display: grid;
+  grid-template-columns: clamp(6rem, 18vw, 8rem) 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid color-mix(in oklab, var(--brand-surface) 18%, transparent);
+}
+
+.moreMedia {
+  border-radius: var(--radius-sm);
+}
+
+.moreText {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: start;
+}
+
+.moreKind {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-on-dark);
+}
+
+.moreTitle {
+  font-family: var(--font-brand);
+  font-size: var(--fs-xl);
+  line-height: 1;
+}
+
+.moreBody {
+  font-size: var(--fs-sm);
+  color: color-mix(in oklab, var(--brand-surface) 75%, var(--brand-ink));
+}
+
+/* Order online ------------------------------------------------------------ */
+.order {
+  display: grid;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+@media (min-width: 900px) {
+  .order {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.orderTitle {
+  margin-top: 0.75rem;
+  font-family: var(--font-brand);
+  font-size: var(--fs-3xl);
+  line-height: 0.9;
+}
+
+[data-typeface="condensed"] .orderTitle {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.orderLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.orderLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 64px;
+  padding: 0 1.75rem;
+  border: 1.5px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  transition:
+    background var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+
+.orderLink:hover {
+  background: var(--brand-contrast);
+  color: var(--brand-text);
+}
+
+/* Downloads --------------------------------------------------------------- */
+.downloads {
+  border-top: 1px solid var(--line);
+}
+
+.download {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem 1.5rem;
+  align-items: center;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .download {
+    grid-template-columns: 8rem 1fr auto;
+  }
+}
+
+.download > :last-child {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+@media (min-width: 720px) {
+  .download > :last-child {
+    grid-column: auto;
+  }
+}
+
+.downloadKind {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-text);
+}
+
+.downloadTitle {
+  font-size: var(--fs-lg);
+}
+
+.downloadDesc {
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+}

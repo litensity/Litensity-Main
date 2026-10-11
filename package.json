@@ -1,0 +1,43 @@
+{
+  "name": "litensity-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "db:start": "supabase start -x vector,logflare,edge-runtime,imgproxy",
+    "db:reset": "supabase db reset",
+    "db:types": "supabase gen types typescript --local > types/database.ts",
+    "admin:create": "node --env-file=.env.local scripts/create-admin.mjs",
+    "samples:load": "node --env-file=.env.local scripts/seed-samples.mjs",
+    "client:load": "node --env-file=.env.local scripts/load-client-data.mjs"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.2",
+    "leaflet": "^1.9.4",
+    "next": "16.3.8",
+    "nodemailer": "^10.0.15",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1",
+    "three": "^0.186.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.8",
+    "playwright-core": "^1.63.0",
+    "supabase": "^2.119.0",
+    "typescript": "^5"
+  }
+}

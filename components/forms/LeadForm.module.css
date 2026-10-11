@@ -1,0 +1,261 @@
+.form {
+  --field-line: var(--line-strong);
+  --field-focus: var(--brand);
+  --field-fg: var(--ink);
+  display: grid;
+  gap: 2rem;
+  color: var(--field-fg);
+}
+
+.dark {
+  --field-line: rgb(251 248 243 / 0.35);
+  --field-fg: var(--cream);
+  --field-focus: var(--cream);
+}
+
+.grid {
+  display: grid;
+  gap: 1.75rem 2rem;
+}
+
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.compact .grid {
+  grid-template-columns: 1fr;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.req {
+  color: var(--ember);
+}
+
+.dark .req {
+  color: var(--saffron);
+}
+
+/* Underline fields — editorial, no boxes */
+.control {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.6rem 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--field-line);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-size: var(--fs-md);
+  transition: border-color var(--dur-fast);
+  appearance: none;
+}
+
+select.control {
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237a6e63' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.25rem center;
+}
+
+select.control option {
+  color: var(--ink);
+}
+
+textarea.control {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+}
+
+.control::placeholder {
+  color: currentColor;
+  opacity: 0.4;
+}
+
+.control:focus {
+  outline: none;
+  border-bottom-color: var(--field-focus);
+  box-shadow: 0 1.5px 0 0 var(--field-focus);
+}
+
+.control[aria-invalid="true"] {
+  border-bottom-color: var(--danger);
+}
+
+.dark .control[aria-invalid="true"] {
+  border-bottom-color: var(--saffron);
+}
+
+.help {
+  font-size: var(--fs-xs);
+  opacity: 0.6;
+}
+
+.error {
+  font-size: var(--fs-sm);
+  color: var(--danger);
+}
+
+.dark .error {
+  color: var(--saffron);
+}
+
+.checkbox {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+
+.checkbox input {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--ink);
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 52px;
+  border-bottom: 1.5px solid var(--field-line);
+  cursor: pointer;
+}
+
+.file input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.file:focus-within {
+  border-bottom-color: var(--field-focus);
+}
+
+.fileButton {
+  padding: 0.45rem 1rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.fileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+}
+
+.legal {
+  flex: 1 1 260px;
+  font-size: var(--fs-xs);
+  opacity: 0.7;
+}
+
+.legal a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.alert {
+  padding: 1rem 1.25rem;
+  border: 1px solid color-mix(in oklab, var(--danger) 45%, transparent);
+  background: color-mix(in oklab, var(--danger) 8%, transparent);
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}
+
+.dark .alert {
+  border-left-color: var(--saffron);
+  background: rgb(251 248 243 / 0.08);
+}
+
+.alert:focus {
+  outline: none;
+}
+
+/* Honeypot: off-screen, not display:none (some bots skip hidden fields) */
+.trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.success {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+  padding: 2rem 0;
+  animation: pop var(--dur-slow) var(--ease-out);
+}
+
+.successIcon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--brand-contrast);
+}
+
+.dark .successIcon {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.successTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  line-height: 1.1;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.compact.form {
+  gap: 1rem;
+}
+
+.compact .footer {
+  gap: 0.75rem;
+}

@@ -1,0 +1,179 @@
+.card {
+  position: relative;
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.5rem 0 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--dur) var(--ease-out);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.6rem;
+  bottom: 1.6rem;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--c);
+  transform: scaleY(0.35);
+  transform-origin: top;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.card[data-selected]::before,
+.card:hover::before {
+  transform: scaleY(1);
+}
+
+.card[data-selected] {
+  background: color-mix(in oklab, var(--c) 6%, transparent);
+}
+
+.photo {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.brand {
+  color: color-mix(in oklab, var(--c) 80%, var(--ink));
+}
+
+.open,
+.closed,
+.soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0.85;
+}
+
+.open::before,
+.closed::before,
+.soon::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.open {
+  color: var(--success);
+}
+
+.closed {
+  color: var(--muted);
+}
+
+.soon {
+  color: var(--ember-deep);
+}
+
+.name {
+  font-size: var(--fs-lg);
+  line-height: 1.15;
+}
+
+.nameButton {
+  position: relative;
+  text-align: left;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+/* Extends the tap target to ≥44px without changing the card's layout. */
+.nameButton::after {
+  content: "";
+  position: absolute;
+  inset: -0.75rem 0;
+}
+
+.nameButton:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.address {
+  font-style: normal;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.distance {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hours {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  font-size: var(--fs-sm);
+}
+
+.hours div {
+  display: flex;
+  gap: 1rem;
+}
+
+.hours dt {
+  min-width: 6.5rem;
+  opacity: 0.6;
+}
+
+.hours dd {
+  margin: 0;
+}
+
+.note {
+  font-size: var(--fs-xs);
+  opacity: 0.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 40px;
+  padding: 0 0.95rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition:
+    background var(--dur-fast),
+    color var(--dur-fast),
+    border-color var(--dur-fast);
+}
+
+.action:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+.order {
+  border-color: transparent;
+  background: color-mix(in oklab, var(--c) 14%, transparent);
+}

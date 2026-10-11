@@ -1,0 +1,200 @@
+.footer {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+  --line: var(--line-on-dark);
+  padding-top: var(--space-xl);
+  /* room for the mobile action dock */
+  padding-bottom: 72px;
+}
+
+@media (min-width: 900px) {
+  .footer {
+    padding-bottom: 0;
+  }
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.top {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 1000px) {
+  .top {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-xl);
+  }
+}
+
+.statementText {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  max-width: 12ch;
+}
+
+.newsletter {
+  margin-top: var(--space-md);
+  max-width: 440px;
+}
+
+.newsletterHeading {
+  margin-bottom: 1rem;
+  opacity: 0.7;
+  font-size: var(--fs-sm);
+}
+
+.columns {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .columns {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.colTitle {
+  margin-bottom: 1.25rem;
+  opacity: 0.5;
+}
+
+.col ul {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 85% / 0 1px;
+  transition: background-size var(--dur-slow) var(--ease-out);
+}
+
+.link:hover {
+  background-size: 100% 1px;
+}
+
+.brandList {
+  gap: 1rem !important;
+}
+
+.brandLink {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
+  gap: 0.6rem;
+}
+
+.brandLink::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.brandMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.9rem;
+  padding-left: 1.1rem;
+}
+
+.minor {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  transition: opacity var(--dur-fast);
+}
+
+.minor:hover {
+  opacity: 1;
+}
+
+.address {
+  display: grid;
+  gap: 0.25rem;
+  font-style: normal;
+  opacity: 0.75;
+  font-size: var(--fs-sm);
+  margin-bottom: 1rem;
+}
+
+.legalName {
+  font-weight: 600;
+  opacity: 1;
+}
+
+.contactList {
+  font-size: var(--fs-sm);
+}
+
+.social {
+  display: flex !important;
+  gap: 0.25rem !important;
+  margin-top: 1rem;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition:
+    background var(--dur-fast),
+    color var(--dur-fast);
+}
+
+.social a:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: var(--space-xl);
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-xs);
+  opacity: 0.7;
+}
+
+.legal {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.giant {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 24.5vw, 26rem);
+  line-height: 0.75;
+  letter-spacing: -0.06em;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  text-align: center;
+  white-space: nowrap;
+  color: color-mix(in oklab, var(--paper) 12%, transparent);
+  margin-bottom: -0.08em;
+  user-select: none;
+}

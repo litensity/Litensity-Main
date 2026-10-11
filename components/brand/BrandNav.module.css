@@ -1,0 +1,58 @@
+.nav {
+  position: sticky;
+  top: var(--header-h);
+  transition: top var(--dur-slow) var(--ease-out);
+  z-index: calc(var(--z-header) - 2);
+  background: color-mix(in oklab, var(--brand-surface) 92%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in oklab, var(--brand-ink) 14%, transparent);
+  color: var(--brand-ink);
+}
+
+/* Scoped under .nav so the global ul[role="list"] reset doesn't strip the gutter */
+.nav .list {
+  display: flex;
+  gap: 0.25rem;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 0.5rem var(--gutter);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 1rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background var(--dur-fast),
+    color var(--dur-fast);
+}
+
+.link:hover {
+  background: color-mix(in oklab, var(--brand) 12%, transparent);
+}
+
+.link[aria-current="location"] {
+  background: var(--brand);
+  color: var(--brand-contrast);
+}
+
+/* Dock under the compact header once the page has scrolled */
+:global(html:has(header[data-compact])) .nav {
+  top: var(--header-h-compact);
+}
+
+/* Slide up with the header when it hides on scroll-down */
+:global(html:has(header[data-hidden])) .nav {
+  top: 0;
+}

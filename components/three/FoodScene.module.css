@@ -1,0 +1,37 @@
+/* :where() keeps this default at zero specificity so each page's own `.scene` positioning wins in any stylesheet order. */
+:where(.scene) {
+  position: relative;
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  /* Never steal touch scrolling on phones. */
+  touch-action: pan-y;
+}
+
+.scene[data-ready] {
+  opacity: 1;
+  transform: none;
+}
+
+.scene canvas {
+  outline: none;
+}
+
+.tip {
+  position: absolute;
+  z-index: 2;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--cream);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(14px, -130%);
+  box-shadow: 0 10px 24px -12px rgb(0 0 0 / 0.5);
+}

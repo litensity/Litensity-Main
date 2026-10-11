@@ -1,0 +1,221 @@
+.invest {
+  padding-block: var(--space-section);
+  background: var(--brand-ink);
+  color: var(--brand-surface);
+  /* This section sits on brand ink: swap in the variant of the brand colour that reads there */
+  --brand: var(--brand-on-dark);
+  --brand-contrast: var(--brand-on-dark-contrast);
+  --brand-text: var(--brand-on-dark);
+  --line: color-mix(in oklab, var(--brand-surface) 18%, transparent);
+  --line-strong: color-mix(in oklab, var(--brand-surface) 35%, transparent);
+}
+
+/* Follow-on investment blocks sit close to the block above */
+.part {
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.block {
+  margin-top: var(--space-lg);
+}
+
+.blockLabel {
+  margin-bottom: 1.5rem;
+  opacity: 0.6;
+}
+
+.models {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+@media (min-width: 800px) {
+  .models[data-count="2"],
+  .models[data-count="4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .models[data-count="3"],
+  .models[data-count="5"],
+  .models[data-count="6"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.model {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--brand-ink);
+  transition: background var(--dur) var(--ease-out);
+}
+
+.model:hover {
+  background: color-mix(in oklab, var(--brand-ink) 88%, var(--brand));
+}
+
+.modelIndex {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--brand-text);
+}
+
+.modelName {
+  font-family: var(--font-brand);
+  font-size: var(--fs-2xl);
+  line-height: 0.95;
+}
+
+[data-typeface="condensed"] .modelName {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.modelFormat {
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+}
+
+.modelDesc {
+  opacity: 0.8;
+}
+
+.includes {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+}
+
+.includes li {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.includes li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 0.55em;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: auto 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.figures dt {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.figures dd {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+}
+
+.assumptions {
+  font-size: var(--fs-xs);
+  opacity: 0.6;
+}
+
+.figuresPending {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* Process: horizontal timeline on wide screens */
+.process {
+  display: grid;
+  gap: 0;
+  counter-reset: step;
+}
+
+@media (min-width: 900px) {
+  .process {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+}
+
+.step {
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: 1.5rem 1.25rem 1.5rem 3.5rem;
+  border-left: 1px solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .step {
+    padding: 3.5rem 1.25rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+.stepIndex {
+  position: absolute;
+  left: -1.1rem;
+  top: 1.25rem;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--brand-contrast);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+
+@media (min-width: 900px) {
+  .stepIndex {
+    left: 0;
+    top: -1.1rem;
+  }
+}
+
+.stepTitle {
+  font-size: var(--fs-lg);
+  line-height: 1.1;
+}
+
+.stepBody {
+  font-size: var(--fs-sm);
+  opacity: 0.75;
+}
+
+.stepMeta {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand-text);
+}
+
+.faq {
+  max-width: 900px;
+}
+
+.enquiry {
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--brand-ink) 92%, white);
+  scroll-margin-top: calc(var(--header-h) + 4rem);
+}

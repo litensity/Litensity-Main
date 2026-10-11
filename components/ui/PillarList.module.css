@@ -1,0 +1,113 @@
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .cols2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-md);
+  }
+}
+
+@media (min-width: 1000px) {
+  .cols3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--space-md);
+  }
+}
+
+.item {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding-block: clamp(1.75rem, 3vw, 2.75rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.link {
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* Number and icon sit together directly above the heading */
+.head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.index {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  line-height: 1;
+  font-weight: 300;
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  color: var(--brand-text);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  transition:
+    background var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-spring);
+}
+
+.item:hover .icon,
+.tracked[data-tracking] .item[data-active] .icon {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-contrast);
+  transform: rotate(-8deg);
+}
+
+.title {
+  font-size: var(--fs-xl);
+  line-height: 1.05;
+}
+
+.body {
+  max-width: 42ch;
+  opacity: 0.78;
+}
+
+.meta {
+  opacity: 0.6;
+}
+
+/* Scroll-tracked list: rows dim until they reach the middle of the screen; the number fills in */
+.tracked .index {
+  transition:
+    color var(--dur) var(--ease),
+    -webkit-text-stroke-color var(--dur) var(--ease);
+}
+
+.tracked[data-tracking] .item {
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur-slow) var(--ease);
+}
+
+.tracked[data-tracking] .item[data-shown]:not([data-active]) {
+  opacity: 0.42;
+}
+
+.tracked[data-tracking] .item:not([data-active]) .index {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--brand-text);
+}
+
+.tracked[data-tracking] .item[data-active] .index {
+  color: var(--brand-text);
+}

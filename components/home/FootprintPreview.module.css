@@ -1,0 +1,189 @@
+.band {
+  overflow: clip;
+}
+
+.grid {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-areas:
+    "text"
+    "controls"
+    "map"
+    "cta";
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 5fr 6fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "text map"
+      "controls map"
+      "cta map";
+    column-gap: var(--space-lg);
+    row-gap: 1.75rem;
+    align-items: start;
+  }
+}
+
+.text {
+  grid-area: text;
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+  align-self: end;
+}
+
+.heading {
+  font-size: var(--fs-3xl);
+  line-height: 0.95;
+}
+
+.body {
+  font-size: var(--fs-md);
+  color: var(--ink-soft);
+  max-width: 34ch;
+}
+
+.controls {
+  grid-area: controls;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.cta {
+  grid-area: cta;
+}
+
+.summary {
+  font-size: var(--fs-md);
+}
+
+.summary strong {
+  font-family: var(--font-display);
+  font-size: 1.6em;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Brand chips = filters */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  --c: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.chipDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c);
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.chip:hover {
+  border-color: var(--c);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--c);
+  border-color: var(--c);
+  color: var(--cream);
+}
+
+.chip[aria-pressed="true"] .chipDot {
+  background: var(--cream);
+}
+
+/* Map + tooltip */
+.mapWrap {
+  grid-area: map;
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  justify-self: center;
+  align-self: center;
+  color: var(--ink);
+}
+
+.tip {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  gap: 0.15rem;
+  min-width: 200px;
+  padding: 0.85rem 1rem 0.75rem;
+  border-top: 3px solid var(--c);
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--cream);
+  box-shadow: 0 18px 40px -18px rgb(22 17 13 / 0.6);
+  transform: translate(-50%, calc(-100% - 14px));
+  animation: tip-in var(--dur) var(--ease);
+}
+
+.tip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 12px;
+  height: 12px;
+  background: var(--ink);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+@keyframes tip-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 6px));
+  }
+}
+
+.tipBrand {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--c);
+  filter: brightness(1.35);
+}
+
+.tipStore {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.tipPlace {
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+}
+
+.tipLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
