@@ -7,7 +7,7 @@ import { useEffect, useRef, type ReactNode } from "react";
  *   --enter  0→1 while the card travels up to its sticky position (photo zoom settles)
  *   --cover  0→1 while the next card slides over it (scale down + dim)
  * and marks the card currently on top with data-active (counter highlight).
- * Desktop + motion only; otherwise the cards are a plain list.
+ * Desktop and phones tall enough to stack (matches the CSS), with motion allowed; otherwise a plain list.
  */
 export function StackProgress({ children, className }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLOListElement>(null);
@@ -15,7 +15,9 @@ export function StackProgress({ children, className }: { children: ReactNode; cl
   useEffect(() => {
     const list = ref.current;
     if (!list) return;
-    const motion = window.matchMedia("(min-width: 900px) and (prefers-reduced-motion: no-preference)");
+    const motion = window.matchMedia(
+      "(min-width: 900px) and (prefers-reduced-motion: no-preference), (max-width: 899px) and (min-height: 620px) and (prefers-reduced-motion: no-preference)",
+    );
     let frame = 0;
 
     const update = () => {

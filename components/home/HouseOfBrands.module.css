@@ -247,3 +247,42 @@
 .mediaFrame {
   transform: scale(calc(1.14 - var(--enter, 1) * 0.14 + var(--cover, 0) * 0.05));
 }
+
+/* Phones tall enough to show a whole card: the same stack, with the card sized to the screen.
+   Shorter screens keep the plain list so no text is ever cut off. */
+@media (max-width: 899px) and (min-height: 620px) {
+  .stack {
+    --card-h: min(calc(100svh - 1.5rem), 760px);
+    gap: 0;
+  }
+
+  .panel {
+    position: sticky;
+    top: max(0.75rem, calc((100svh - var(--card-h)) / 2));
+    height: var(--card-h);
+    box-shadow: 0 -18px 36px -24px rgb(0 0 0 / 0.45);
+    transform: scale(calc(1 - var(--cover, 0) * 0.05));
+    filter: brightness(calc(1 - var(--cover, 0) * 0.38));
+    will-change: transform, filter;
+  }
+
+  .panel + .panel {
+    margin-top: 18svh;
+  }
+
+  /* Text keeps its natural height; the photo takes whatever is left. */
+  .panelInner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panelText {
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .panelMedia {
+    flex: 1;
+    min-height: 120px;
+  }
+}
