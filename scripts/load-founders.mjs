@@ -1,4 +1,5 @@
-// Loads the real founders (from www.dcubedessertscafe.com) into a Supabase project.
+// Loads the real founders (copy and links from www.dcubedessertscafe.com; Naveen and Niranjan's portraits
+// from the client's "Mugshots founders" Drive folder) into a Supabase project.
 //   node --env-file=.env.local scripts/load-founders.mjs
 // Idempotent: founders are matched on name and updated in place; portraits are cropped to 4:5 and
 // stored once under founders/<slug>.jpg. Other founder rows (placeholders) are archived, not deleted.
@@ -16,6 +17,7 @@ if (!url || !key) {
 const db = createClient(url, key, { auth: { persistSession: false } });
 
 const wix = (file) => `https://static.wixstatic.com/media/3aa10e_${file}`;
+const drive = (id) => `https://drive.google.com/uc?export=download&id=${id}`;
 
 const founders = [
   {
@@ -26,8 +28,10 @@ const founders = [
       "With 17 years of experience working in the USA and Brazil, he applies technology and solution architecture to improve efficiency and innovation in the food & beverage industry, driven by a passion for food.",
     linkedin_url: "https://www.linkedin.com/in/naveen-babu-gorantla-b47ba921/",
     instagram_url: "https://www.instagram.com/naveenbabu_gorantla",
-    photo: wix("36cc3111b7e6461f9b11160e2d1ce291~mv2.jpeg"),
-    crop: "attention",
+    // DSC06408.JPG — full-length shot, so frame head to waist.
+    photo: drive("1G2fdIdqYIlxLRY3ILk79FfTCH-h4scUp"),
+    photoPath: "founders/naveen-gorantla-mugshot.jpg",
+    frame: { top: 0.03, width: 0.85 },
   },
   {
     slug: "niranjan-bandla",
@@ -37,8 +41,10 @@ const founders = [
       "Brings 17+ years of global IT experience, having worked across the USA, Mexico, and South Korea, and combines a passion for food with technology to drive innovation in the food & beverage industry.",
     linkedin_url: "https://www.linkedin.com/in/niranjan-babu-bandla-9a38791b8/",
     instagram_url: "https://www.instagram.com/niranjanbandla",
-    photo: wix("ca8d4802fd0a40a5a29bf0959b5d7b2a~mv2.jpeg"),
-    crop: "top",
+    // DSC06405.JPG
+    photo: drive("1fKXMtmapm8RdiIJLIMlfiDJFpVid4TZS"),
+    photoPath: "founders/niranjan-bandla-mugshot.jpg",
+    frame: { top: 0.03, width: 0.85 },
   },
   {
     slug: "raj-vinnakota",
@@ -70,14 +76,21 @@ function fail(step, error) {
 }
 
 async function portrait(f) {
-  const path = `founders/${f.slug}.jpg`;
+  const path = f.photoPath ?? `founders/${f.slug}.jpg`;
   const { data: found } = await db.from("media").select("id").eq("bucket", "media").eq("path", path).maybeSingle();
   if (found) return found.id;
   const res = await fetch(f.photo);
   if (!res.ok) fail(`download ${f.name}`, new Error(`${res.status}`));
-  const buf = await sharp(Buffer.from(await res.arrayBuffer()))
-    .rotate()
-    .resize({ width: 1200, height: 1500, fit: "cover", position: f.crop })
+  let img = sharp(await sharp(Buffer.from(await res.arrayBuffer())).rotate().toBuffer());
+  if (f.frame) {
+    // Centred 4:5 window: `width` is a fraction of the photo width, `top` a fraction of its height.
+    const { width: W, height: H } = await img.metadata();
+    const width = Math.round(W * f.frame.width);
+    const top = Math.round(H * f.frame.top);
+    img = img.extract({ left: Math.round((W - width) / 2), top, width, height: Math.min(Math.round(width * 1.25), H - top) });
+  }
+  const buf = await img
+    .resize({ width: 1200, height: 1500, fit: "cover", position: f.crop ?? "attention" })
     .jpeg({ quality: 84, mozjpeg: true })
     .toBuffer();
   const { error: upErr } = await db.storage
