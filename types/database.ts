@@ -448,13 +448,13 @@ isOneToOne: false
                   ]
                 },"people": {
                   Row: {
-                    "background": string | null,"bio": string | null,"designation": string | null,"id": string,"kind": Database["public"]['Enums']["person_kind"],"linkedin_url": string | null,"name": string,"photo_media_id": string | null,"responsibility": string | null,"sort_order": number,"status": Database["public"]['Enums']["publish_status"],"updated_at": string
+                    "background": string | null,"bio": string | null,"designation": string | null,"id": string,"instagram_url": string | null,"kind": Database["public"]['Enums']["person_kind"],"linkedin_url": string | null,"name": string,"photo_media_id": string | null,"responsibility": string | null,"sort_order": number,"status": Database["public"]['Enums']["publish_status"],"updated_at": string
                   }
                   Insert: {
-                    "background"?: string | null,"bio"?: string | null,"designation"?: string | null,"id"?: string,"kind": Database["public"]['Enums']["person_kind"],"linkedin_url"?: string | null,"name": string,"photo_media_id"?: string | null,"responsibility"?: string | null,"sort_order"?: number,"status"?: Database["public"]['Enums']["publish_status"],"updated_at"?: string
+                    "background"?: string | null,"bio"?: string | null,"designation"?: string | null,"id"?: string,"instagram_url"?: string | null,"kind": Database["public"]['Enums']["person_kind"],"linkedin_url"?: string | null,"name": string,"photo_media_id"?: string | null,"responsibility"?: string | null,"sort_order"?: number,"status"?: Database["public"]['Enums']["publish_status"],"updated_at"?: string
                   }
                   Update: {
-                    "background"?: string | null,"bio"?: string | null,"designation"?: string | null,"id"?: string,"kind"?: Database["public"]['Enums']["person_kind"],"linkedin_url"?: string | null,"name"?: string,"photo_media_id"?: string | null,"responsibility"?: string | null,"sort_order"?: number,"status"?: Database["public"]['Enums']["publish_status"],"updated_at"?: string
+                    "background"?: string | null,"bio"?: string | null,"designation"?: string | null,"id"?: string,"instagram_url"?: string | null,"kind"?: Database["public"]['Enums']["person_kind"],"linkedin_url"?: string | null,"name"?: string,"photo_media_id"?: string | null,"responsibility"?: string | null,"sort_order"?: number,"status"?: Database["public"]['Enums']["publish_status"],"updated_at"?: string
                   }
                   Relationships: [
                     {

@@ -61,9 +61,14 @@
   opacity: 0.85;
 }
 
-.linkedin {
+.social {
   grid-row: 1;
   grid-column: 2;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.socialLink {
   display: grid;
   place-items: center;
   width: 44px;
@@ -75,7 +80,7 @@
     color var(--dur-fast);
 }
 
-.linkedin:hover {
+.socialLink:hover {
   background: var(--ink);
   color: var(--cream);
 }

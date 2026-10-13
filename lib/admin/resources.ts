@@ -1340,6 +1340,7 @@ function personFields() {
       { name: "designation", label: "Designation", type: "text" },
       media("photo_media_id", "Portrait"),
       { name: "linkedin_url", label: "LinkedIn", type: "url" },
+      { name: "instagram_url", label: "Instagram", type: "url" },
       { name: "background", label: "Professional background", type: "textarea", full: true },
       { name: "responsibility", label: "Responsibility", type: "textarea", full: true },
       { name: "bio", label: "Short bio", type: "textarea", full: true },

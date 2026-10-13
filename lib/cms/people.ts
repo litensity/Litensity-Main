@@ -25,6 +25,7 @@ export const getPeople = cache(async (kind?: "founder" | "leader"): Promise<Pers
     responsibility: r.responsibility,
     bio: r.bio,
     linkedinUrl: r.linkedin_url,
+    instagramUrl: r.instagram_url,
     photo: toMedia(r.photo as MediaRow | null, r.name),
   }));
 });

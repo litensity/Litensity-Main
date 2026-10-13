@@ -226,6 +226,7 @@ export interface Person {
   responsibility: string | null;
   bio: string | null;
   linkedinUrl: string | null;
+  instagramUrl: string | null;
   photo: MediaAsset | null;
 }
 

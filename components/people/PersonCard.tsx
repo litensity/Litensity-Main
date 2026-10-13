@@ -27,16 +27,31 @@ export function PersonCard({ person, index = 0, detailed = false }: { person: Pe
             <CmsText as="p" value={person.bio} />
           </div>
         )}
-        {person.linkedinUrl && (
-          <a
-            href={person.linkedinUrl}
-            className={styles.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${person.name} on LinkedIn`}
-          >
-            <Icon name="linkedin" size={18} />
-          </a>
+        {(person.linkedinUrl || person.instagramUrl) && (
+          <div className={styles.social}>
+            {person.linkedinUrl && (
+              <a
+                href={person.linkedinUrl}
+                className={styles.socialLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${person.name} on LinkedIn`}
+              >
+                <Icon name="linkedin" size={18} />
+              </a>
+            )}
+            {person.instagramUrl && (
+              <a
+                href={person.instagramUrl}
+                className={styles.socialLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${person.name} on Instagram`}
+              >
+                <Icon name="instagram" size={18} />
+              </a>
+            )}
+          </div>
         )}
       </div>
     </article>
