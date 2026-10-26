@@ -8,7 +8,7 @@ import { leadHeader, type FormKey } from "./deliver";
 /*
  * Excel export of the lead log (lead_submissions). Reads with the signed-in admin's session,
  * so the database's admin-only RLS policy is the final gate. One worksheet per form, laid out
- * like that form's Google Sheet, plus the delivery status of each lead.
+ * with the form's fields, plus the email delivery status of each lead.
  */
 
 /** Sheet order in an "all forms" workbook. */
@@ -69,7 +69,7 @@ function nextDayStartIst(day: string): string {
   return dayStartIst(d.toISOString().slice(0, 10));
 }
 
-type LeadRow = Pick<Tables<"lead_submissions">, "created_at" | "form_key" | "brand_slug" | "source_page" | "email" | "phone" | "payload" | "sheet_status" | "email_status">;
+type LeadRow = Pick<Tables<"lead_submissions">, "created_at" | "form_key" | "brand_slug" | "source_page" | "email" | "phone" | "payload" | "email_status">;
 
 type Db = Awaited<ReturnType<typeof createSessionClient>>;
 
@@ -99,7 +99,7 @@ const PAGE = 1000; // PostgREST's default max rows per request
 async function fetchLeads(db: Db, filter: LeadExportFilter, forms: FormKey[]): Promise<LeadRow[]> {
   const rows: LeadRow[] = [];
   for (let from = 0; ; from += PAGE) {
-    const { data, error } = await scoped(db, filter, forms, "created_at, form_key, brand_slug, source_page, email, phone, payload, sheet_status, email_status")
+    const { data, error } = await scoped(db, filter, forms, "created_at, form_key, brand_slug, source_page, email, phone, payload, email_status")
       .order("created_at", { ascending: true })
       .range(from, from + PAGE - 1)
       .returns<LeadRow[]>();
@@ -127,7 +127,7 @@ function formSheet(form: FormKey, label: string, rows: LeadRow[], brandNames: Ma
 
   const header = leadHeader(fields);
   header[0] = "Submitted (IST)";
-  const columns: XlsxColumn[] = [...header, "Sheet delivery", "Email delivery"].map((h) => ({ header: h, wrap: WRAPPED.has(h) }));
+  const columns: XlsxColumn[] = [...header, "Email delivery"].map((h) => ({ header: h, wrap: WRAPPED.has(h) }));
 
   return {
     name: label,
@@ -147,7 +147,6 @@ function formSheet(form: FormKey, label: string, rows: LeadRow[], brandNames: Ma
           const value = p[f];
           return LINKED[f] && typeof value === "string" && value ? { link: value, text: LINKED[f] } : text(value);
         }),
-        STATUS_LABEL[r.sheet_status] ?? r.sheet_status,
         STATUS_LABEL[r.email_status] ?? r.email_status,
       ];
     }),

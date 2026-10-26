@@ -27,7 +27,7 @@ export default async function Dashboard({ searchParams }: PageProps<"/admin">) {
     db.from("jobs").select("*", { count: "exact", head: true }).eq("is_open", true).eq("status", "published"),
     Promise.all(["brands", "products", "people", "jobs", "csr_initiatives", "investment_models", "downloads"].map((t) => db.from(t).select("*", { count: "exact", head: true }).eq("status", "draft"))),
     db.from("lead_submissions").select("*", { count: "exact", head: true }).gte("created_at", daysAgo(7)),
-    db.from("lead_submissions").select("id, form_key, brand_slug, email, created_at, sheet_status").order("created_at", { ascending: false }).limit(8),
+    db.from("lead_submissions").select("id, form_key, brand_slug, email, created_at").order("created_at", { ascending: false }).limit(8),
     missingContentReport(),
     db.from("csr_initiatives").select("*", { count: "exact", head: true }),
   ]);
@@ -135,7 +135,7 @@ export default async function Dashboard({ searchParams }: PageProps<"/admin">) {
                     </Link>
                     <form action={deleteRecord.bind(null, "leads", l.id, "/admin?deleted=1")}>
                       <ConfirmButton
-                        message={`Delete the ${l.form_key} lead from ${l.email || "this visitor"}? It is removed from this log only — the Google Sheet row stays.`}
+                        message={`Delete the ${l.form_key} lead from ${l.email || "this visitor"}? This can't be undone.`}
                         className="a-btn a-btn-sm a-btn-danger"
                       >
                         Delete

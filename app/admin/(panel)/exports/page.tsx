@@ -76,7 +76,7 @@ export default async function ExportLeadsPage({ searchParams }: PageProps<"/admi
             <Link href="/admin">Dashboard</Link> / <Link href="/admin/r/leads">Leads</Link> / <span>Export</span>
           </p>
           <h1>Export leads to Excel</h1>
-          <p>Download enquiries as an Excel file — one sheet per form, laid out like the Google Sheets. Dates are Indian time.</p>
+          <p>Download enquiries as an Excel file — one worksheet per form. Dates are Indian time.</p>
         </div>
       </header>
 

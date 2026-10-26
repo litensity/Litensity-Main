@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Settings" };
 
 const CARDS = [
   { href: "/admin/r/settings", title: "Company & contact", text: "Address, phone, email, WhatsApp, logo, sticky Enquire button, analytics." },
-  { href: "/admin/r/forms", title: "Forms & lead routing", text: "Google Sheet for each form, who gets alerts, acknowledgement emails, dropdown options." },
+  { href: "/admin/r/forms", title: "Forms & lead routing", text: "Who gets alerts for each form, acknowledgement emails, dropdown options." },
   { href: "/admin/r/navigation", title: "Menus", text: "Header and footer links." },
   { href: "/admin/r/social", title: "Social links", text: "Instagram, LinkedIn and more — for the group and each brand." },
   { href: "/admin/r/departments", title: "Contact departments", text: "Department-wise emails and phone numbers on the Contact page." },
