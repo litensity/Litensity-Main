@@ -8,6 +8,7 @@ import type {
   ProductCategory,
   Section,
   StatItem,
+  Store,
 } from "@/lib/cms/types";
 import { paragraphs, present } from "@/lib/content";
 import { Container, Section as Band } from "@/components/ui/Layout";
@@ -239,5 +240,21 @@ export function BrandDownloads({ brand, label, downloads }: { brand: BrandDetail
         </ul>
       </Container>
     </Band>
+  );
+}
+
+/** "Opening soon" note: the cities of the brand's opening-soon stores (set per store in Admin → Stores). */
+export function UpcomingCities({ stores }: { stores: Store[] }) {
+  const cities = [...new Set(stores.filter((s) => s.status === "opening_soon").map((s) => s.city))];
+  if (cities.length === 0) return null;
+  return (
+    <p className={styles.upcoming}>
+      <span className={styles.upcomingLabel}>Opening soon in</span>
+      {cities.map((c) => (
+        <span key={c} className={styles.upcomingCity}>
+          {c}
+        </span>
+      ))}
+    </p>
   );
 }

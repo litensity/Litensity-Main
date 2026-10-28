@@ -22,6 +22,7 @@ import { StoreLocator } from "@/components/stores/StoreLocator";
 import { OfficeMap } from "@/components/stores/OfficeMap";
 import { CareerForm, GeneralForm, InvestorForm } from "@/components/forms/Forms";
 import { Tilt } from "@/components/ui/Tilt";
+import { PinnedScroll } from "@/components/ui/PinnedScroll";
 import type { SectionProps } from "./generic";
 import brandsCss from "./brands.module.css";
 import investCss from "./invest.module.css";
@@ -181,7 +182,8 @@ export async function BrandCompareSection({ section }: SectionProps) {
 /* ==================================================================== Invest */
 
 export async function OwnershipModelSection({ section, index }: SectionProps) {
-  const brands = await getBrands();
+  // Investor-facing: only brands open to investment (the brand's "Investment / franchise block" switch).
+  const brands = (await getBrands()).filter((b) => b.features.investment);
   const css = investCss;
   return (
     <Band tone={tone(section, "paper")} labelledBy={titleId(section)}>
@@ -282,23 +284,33 @@ export async function MilestonesSection({ section, index }: SectionProps) {
   if (milestones.length === 0) return null;
   const css = aboutCss;
   return (
-    <Band tone={tone(section, "cream")} labelledBy={titleId(section)}>
+    <Band tone={tone(section, "cream")} labelledBy={titleId(section)} className={css.timelineBand}>
       <Container>
-        <SectionHead id={titleId(section)} index={index} eyebrow={section.eyebrow} heading={section.heading} />
-        <ol role="list" className={css.timeline}>
+        {/* Open-ended: each new milestone added in Admin extends the track (and the pinned scroll). */}
+        <PinnedScroll
+          className={css.timelinePin}
+          stickyClassName={css.timelineSticky}
+          trackClassName={css.timeline}
+          label={section.heading ?? "Milestones"}
+          head={<SectionHead id={titleId(section)} index={index} eyebrow={section.eyebrow} heading={section.heading} />}
+        >
           {milestones.map((m, i) => (
-            <li key={m.id} className={css.milestone} data-reveal="up" style={{ "--i": i % 3 } as CSSProperties}>
+            <li key={m.id} className={css.milestone} data-reveal="up" style={{ "--i": i % 4 } as CSSProperties}>
               <p className={css.year}>{m.yearLabel}</p>
+              {m.media && <Media media={m.media} aspect="3 / 2" sizes="(min-width: 900px) 25vw, 80vw" className={css.milestoneMedia} />}
               <div className={css.milestoneBody}>
                 <h3 className={css.milestoneTitle}>
                   <CmsText value={m.title} />
                 </h3>
                 <CmsText as="p" value={m.body} />
               </div>
-              {m.media && <Media media={m.media} aspect="3 / 2" sizes="(min-width: 900px) 25vw, 90vw" className={css.milestoneMedia} />}
             </li>
           ))}
-        </ol>
+          <li className={`${css.milestone} ${css.milestoneNext}`} aria-hidden="true">
+            <p className={css.year}>Next</p>
+            <p className={css.milestoneTitle}>{present(section.subheading) ?? "The story continues."}</p>
+          </li>
+        </PinnedScroll>
       </Container>
     </Band>
   );

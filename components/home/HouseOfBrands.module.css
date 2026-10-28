@@ -40,7 +40,7 @@
 
 /* ------------------------------------------------------------ Stacking cards */
 .stack {
-  --card-h: clamp(460px, 74svh, 640px);
+  --card-h: clamp(500px, 86svh, 720px);
   display: grid;
   gap: 0.75rem;
   max-width: var(--max-width);
@@ -89,6 +89,16 @@
 @media (min-width: 900px) {
   .panelInner {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* Landscape photo (e.g. DCube): give it more of the card so less is cropped on laptop screens */
+  .panelInner[data-wide] {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  /* …and the narrower text column takes a slightly smaller long name so no word breaks */
+  .panelInner[data-wide] .name[data-long] {
+    font-size: clamp(2.25rem, 0.9rem + 3.4vw, 4.75rem);
   }
 }
 
@@ -228,6 +238,14 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1.5rem;
+}
+
+/* Desktop: button and "Find a store" always share one line */
+@media (min-width: 900px) {
+  .ctas {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
 }
 
 .panelMedia {

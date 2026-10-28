@@ -51,6 +51,10 @@ export function HouseOfBrands({ section, brands, stores }: Props) {
         {brands.map((brand, i) => {
           const liveCount = stores.filter((s) => s.brand.id === brand.id && s.status === "live").length;
           const cities = new Set(stores.filter((s) => s.brand.id === brand.id && s.status === "live").map((s) => s.city)).size;
+          const upcoming = [...new Set(stores.filter((s) => s.brand.id === brand.id && s.status === "opening_soon").map((s) => s.city))];
+          const media = brand.card ?? brand.hero;
+          // Landscape photos get a wider frame so the cover crop doesn't cut off the product.
+          const wide = Boolean(media?.width && media.height && media.width / media.height > 1.2);
           return (
             <li
               key={brand.id}
@@ -58,7 +62,7 @@ export function HouseOfBrands({ section, brands, stores }: Props) {
               data-typeface={brand.typeface}
               style={{ ...brandVars(brand.colors), "--i": i } as CSSProperties}
             >
-              <div className={styles.panelInner}>
+              <div className={styles.panelInner} data-wide={wide || undefined}>
                 <div className={styles.panelText}>
                   <div className={styles.panelMeta}>
                     <span className={styles.count} aria-label={`Brand ${i + 1} of ${brands.length}`}>
@@ -100,10 +104,17 @@ export function HouseOfBrands({ section, brands, stores }: Props) {
                           <dd>{cities}</dd>
                         </div>
                       )}
+                      {upcoming.length > 0 && (
+                        <div>
+                          <dt>Opening soon</dt>
+                          <dd>{upcoming.join(", ")}</dd>
+                        </div>
+                      )}
                     </dl>
                     <div className={styles.ctas}>
                       <ButtonLink href={`/brands/${brand.slug}`} tone="paper">
-                        {`Explore ${brand.name}`}
+                        {/* Three-word names ("DCube Desserts Cafe") use the first word so "Find a store" fits beside it. */}
+                        {`Explore ${brand.name.split(" ").length > 2 ? brand.name.split(" ")[0] : brand.name}`}
                       </ButtonLink>
                       <ButtonLink href={`/stores?brand=${brand.slug}`} variant="link" icon="pin">
                         Find a store
@@ -113,8 +124,8 @@ export function HouseOfBrands({ section, brands, stores }: Props) {
                 </div>
                 <Link href={`/brands/${brand.slug}`} className={styles.panelMedia} tabIndex={-1} aria-hidden="true">
                   <Media
-                    media={brand.card ?? brand.hero}
-                    sizes="(min-width: 900px) 50vw, 100vw"
+                    media={media}
+                    sizes={wide ? "(min-width: 900px) 60vw, 100vw" : "(min-width: 900px) 50vw, 100vw"}
                     className={styles.mediaFrame}
                     hint={`${brand.name} product photograph (full-bleed, no cut-outs)`}
                     tone="brand"

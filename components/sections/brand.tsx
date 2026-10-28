@@ -21,7 +21,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Gallery } from "@/components/ui/Gallery";
 import { BrandHero } from "@/components/brand/BrandHero";
 import { BrandNav } from "@/components/brand/BrandNav";
-import { BrandCampaigns, BrandDownloads, BrandHighlights, BrandMenu, BrandOrder, BrandStory } from "@/components/brand/BrandBlocks";
+import { BrandCampaigns, BrandDownloads, BrandHighlights, BrandMenu, BrandOrder, BrandStory, UpcomingCities } from "@/components/brand/BrandBlocks";
 import { BrandEnquiry, InvestFaq, InvestIntro, InvestProcess, InvestSupport } from "@/components/brand/BrandInvestment";
 import { StoreLocator } from "@/components/stores/StoreLocator";
 
@@ -89,6 +89,7 @@ export async function BrandSections({ brand, sections }: { brand: BrandDetail; s
                   )
                 }
               />
+              <UpcomingCities stores={stores} />
               <StoreLocator
                 stores={stores}
                 brands={allBrands.map((b) => ({ slug: b.slug, name: b.name, color: b.colors.primary }))}

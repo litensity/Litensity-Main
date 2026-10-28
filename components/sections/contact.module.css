@@ -53,21 +53,17 @@
   text-underline-offset: 4px;
 }
 
+/* One row per channel (icon · label · value) so each value stays on a single line */
 .channels {
   display: grid;
   gap: 0.75rem;
 }
 
-@media (min-width: 640px) {
-  .channels {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-}
-
 .channels a {
-  display: grid;
-  gap: 0.5rem;
-  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
   border: 1px solid var(--line);
   border-radius: 6px;
   transition:
@@ -85,9 +81,18 @@
 }
 
 .channelValue {
+  margin-left: auto;
   font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  overflow-wrap: anywhere;
+  font-size: var(--fs-md);
+  white-space: nowrap;
+}
+
+/* Very narrow phones: let a long email wrap rather than overflow the card */
+@media (max-width: 380px) {
+  .channelValue {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
 }
 
 .departments {
