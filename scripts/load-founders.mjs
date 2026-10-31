@@ -1,10 +1,11 @@
-// Loads the real founders (copy and links from www.dcubedessertscafe.com; Naveen and Niranjan's portraits
-// from the client's "Mugshots founders" Drive folder) into a Supabase project.
+// Loads the real founders (copy and links from www.dcubedessertscafe.com; Naveen's portrait from the
+// client's "Mugshots founders" Drive folder, Niranjan's from scripts/founders/) into a Supabase project.
 //   node --env-file=.env.local scripts/load-founders.mjs
 // Idempotent: founders are matched on name and updated in place; portraits are cropped to 4:5 and
 // stored once under founders/<slug>.jpg. Other founder rows (placeholders) are archived, not deleted.
 // Instagram links need migration 20261012000100_people_instagram; until it is pushed they are skipped.
 
+import fs from "node:fs";
 import { createClient } from "@supabase/supabase-js";
 import sharp from "sharp";
 
@@ -41,10 +42,10 @@ const founders = [
       "Brings 17+ years of global IT experience, having worked across the USA, Mexico, and South Korea, and combines a passion for food with technology to drive innovation in the food & beverage industry.",
     linkedin_url: "https://www.linkedin.com/in/niranjan-babu-bandla-9a38791b8/",
     instagram_url: "https://www.instagram.com/niranjanbandla",
-    // DSC06405.JPG
-    photo: drive("1fKXMtmapm8RdiIJLIMlfiDJFpVid4TZS"),
-    photoPath: "founders/niranjan-bandla-mugshot.jpg",
-    frame: { top: 0.03, width: 0.85 },
+    // Studio portrait supplied by the client (2026-10-31), kept in scripts/founders/.
+    file: "founders/niranjan-bandla.png",
+    photoPath: "founders/niranjan-bandla-portrait.jpg",
+    frame: { top: 0.02, width: 1 },
   },
   {
     slug: "raj-vinnakota",
@@ -79,9 +80,14 @@ async function portrait(f) {
   const path = f.photoPath ?? `founders/${f.slug}.jpg`;
   const { data: found } = await db.from("media").select("id").eq("bucket", "media").eq("path", path).maybeSingle();
   if (found) return found.id;
-  const res = await fetch(f.photo);
-  if (!res.ok) fail(`download ${f.name}`, new Error(`${res.status}`));
-  let img = sharp(await sharp(Buffer.from(await res.arrayBuffer())).rotate().toBuffer());
+  let src;
+  if (f.file) src = fs.readFileSync(new URL(`./${f.file}`, import.meta.url));
+  else {
+    const res = await fetch(f.photo);
+    if (!res.ok) fail(`download ${f.name}`, new Error(`${res.status}`));
+    src = Buffer.from(await res.arrayBuffer());
+  }
+  let img = sharp(await sharp(src).rotate().toBuffer());
   if (f.frame) {
     // Centred 4:5 window: `width` is a fraction of the photo width, `top` a fraction of its height.
     const { width: W, height: H } = await img.metadata();

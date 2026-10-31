@@ -54,6 +54,32 @@
       "mapsUrl": "https://maps.app.goo.gl/Uc1L5RPJMUVhTB1C8"
     },
     {
+      "brand": "bigguys",
+      "name": "BIGGUYS Rajahmundry",
+      "address": "Venkateswara Nagar",
+      "locality": "Venkateswara Nagar",
+      "city": "Rajahmundry",
+      "state": "Andhra Pradesh",
+      "pincode": "533103",
+      "latitude": 17.0140878,
+      "longitude": 81.8016126,
+      "status": "opening_soon",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=17.0140878,81.8016126"
+    },
+    {
+      "brand": "bigguys",
+      "name": "BIGGUYS VMR Central Mall, Visakhapatnam",
+      "address": "VMR Central, 2-64, Saniwada Road, Prasanthinagar, Aganampudi",
+      "locality": "Aganampudi",
+      "city": "Visakhapatnam",
+      "state": "Andhra Pradesh",
+      "pincode": "530053",
+      "latitude": 17.6874617,
+      "longitude": 83.1375047,
+      "status": "opening_soon",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=17.6874617,83.1375047"
+    },
+    {
       "brand": "belgian-waffle",
       "name": "The Belgian Waffle Co, Karimnagar",
       "address": "NH563, Karimnagar",

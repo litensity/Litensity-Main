@@ -197,15 +197,3 @@
   gap: 1.5rem;
 }
 
-.giant {
-  font-family: var(--font-display);
-  font-size: clamp(5rem, 24.5vw, 26rem);
-  line-height: 0.75;
-  letter-spacing: -0.06em;
-  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
-  text-align: center;
-  white-space: nowrap;
-  color: color-mix(in oklab, var(--paper) 12%, transparent);
-  margin-bottom: -0.08em;
-  user-select: none;
-}

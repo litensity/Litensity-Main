@@ -142,10 +142,6 @@ export async function Footer() {
           </ul>
         </div>
       </div>
-
-      <p className={styles.giant} aria-hidden="true">
-        {settings.companyName}
-      </p>
     </footer>
   );
 }
