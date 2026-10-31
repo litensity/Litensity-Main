@@ -49,9 +49,10 @@ export function HouseOfBrands({ section, brands, stores }: Props) {
 
       <StackProgress className={styles.stack}>
         {brands.map((brand, i) => {
-          const liveCount = stores.filter((s) => s.brand.id === brand.id && s.status === "live").length;
-          const cities = new Set(stores.filter((s) => s.brand.id === brand.id && s.status === "live").map((s) => s.city)).size;
-          const upcoming = [...new Set(stores.filter((s) => s.brand.id === brand.id && s.status === "opening_soon").map((s) => s.city))];
+          // Counts include opening-soon stores, so a brand's footprint shows announced stores too.
+          const brandStores = stores.filter((s) => s.brand.id === brand.id);
+          const storeCount = brandStores.length;
+          const cities = new Set(brandStores.map((s) => `${s.state}|${s.city}`.toLowerCase())).size;
           const media = brand.card ?? brand.hero;
           // Landscape photos get a wider frame so the cover crop doesn't cut off the product.
           const wide = Boolean(media?.width && media.height && media.width / media.height > 1.2);
@@ -92,22 +93,16 @@ export function HouseOfBrands({ section, brands, stores }: Props) {
                           <dd>{brand.category}</dd>
                         </div>
                       )}
-                      {liveCount > 0 && (
+                      {storeCount > 0 && (
                         <div>
                           <dt>Stores</dt>
-                          <dd>{liveCount}</dd>
+                          <dd>{storeCount}</dd>
                         </div>
                       )}
                       {cities > 0 && (
                         <div>
                           <dt>Cities</dt>
                           <dd>{cities}</dd>
-                        </div>
-                      )}
-                      {upcoming.length > 0 && (
-                        <div>
-                          <dt>Opening soon</dt>
-                          <dd>{upcoming.join(", ")}</dd>
                         </div>
                       )}
                     </dl>

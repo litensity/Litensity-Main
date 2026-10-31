@@ -1,5 +1,5 @@
 {
-  "_note": "Client-supplied store list (2026-10-11). Coordinates come from the client's Google Maps links; opening-soon pins are locality-level. Address lines and pincodes were derived from the map pins — verify with the client. Phone numbers and opening hours are pending client input and are left blank.",
+  "_note": "Client-supplied store list (2026-10-11). Coordinates come from the client's Google Maps links; opening-soon pins are locality-level. BIGGUYS addresses for Vijayawada, Eluru, Rajahmundry and VMR Central match www.bigguys.in/our-stores (2026-10-31); the rest were derived from the map pins — verify with the client. Phone numbers and opening hours are pending client input and are left blank.",
   "stores": [
     {
       "brand": "bigguys",
@@ -17,11 +17,11 @@
     {
       "brand": "bigguys",
       "name": "BIGGUYS Vijayawada",
-      "address": "Patamata",
-      "locality": "Patamata",
+      "address": "Surya Prakash Square, 54-20-1B, NTR, Guru Nanak Colony",
+      "locality": "Guru Nanak Colony",
       "city": "Vijayawada",
       "state": "Andhra Pradesh",
-      "pincode": "520010",
+      "pincode": "520008",
       "latitude": 16.504956,
       "longitude": 80.6621139,
       "status": "live",
@@ -30,11 +30,11 @@
     {
       "brand": "bigguys",
       "name": "BIGGUYS Eluru",
-      "address": "Eluru Road, Powerpet",
-      "locality": "Powerpet",
+      "address": "2nd Floor, CMR Central, Ameenapet",
+      "locality": "Ameenapet",
       "city": "Eluru",
       "state": "Andhra Pradesh",
-      "pincode": "534002",
+      "pincode": "534006",
       "latitude": 16.7079248,
       "longitude": 81.0884394,
       "status": "live",
@@ -128,19 +128,6 @@
       "pincode": "500019",
       "latitude": 17.4669088,
       "longitude": 78.3103789,
-      "status": "opening_soon",
-      "mapsUrl": null
-    },
-    {
-      "brand": "dcube",
-      "name": "DCube Aparna Mall, Shamshabad",
-      "address": "Aparna Mall, Shamshabad",
-      "locality": "Shamshabad",
-      "city": "Hyderabad",
-      "state": "Telangana",
-      "pincode": "501218",
-      "latitude": 17.2611444,
-      "longitude": 78.3931943,
       "status": "opening_soon",
       "mapsUrl": null
     },
