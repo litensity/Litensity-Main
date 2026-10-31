@@ -191,7 +191,7 @@ export const RESOURCES: Resource[] = [
             defaultValue: "manual",
             options: [
               { value: "manual", label: "Manual value" },
-              { value: "stores_live", label: "Auto — live stores" },
+              { value: "stores_live", label: "Auto — stores (live + opening soon)" },
               { value: "cities", label: "Auto — cities" },
               { value: "states", label: "Auto — states" },
               { value: "brands", label: "Auto — published brands" },
@@ -1411,7 +1411,7 @@ RESOURCES.push(
             defaultValue: "manual",
             options: [
               { value: "manual", label: "Manual value" },
-              { value: "stores_live", label: "Auto — live stores of this brand" },
+              { value: "stores_live", label: "Auto — stores of this brand (live + opening soon)" },
               { value: "cities", label: "Auto — cities of this brand" },
               { value: "states", label: "Auto — states of this brand" },
             ],

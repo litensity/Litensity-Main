@@ -14,7 +14,7 @@ export function FootprintPreview({ section, stores, brands }: { section: Section
   const fp = footprintOf(stores);
   const perBrand: FootprintBrand[] = brands.map((b) => {
     const f = footprintOf(stores.filter((s) => s.brand.id === b.id));
-    return { slug: b.slug, name: b.name, color: b.colors.primary, stores: f.storesLive, cities: f.cities, states: f.states };
+    return { slug: b.slug, name: b.name, color: b.colors.primary, stores: f.stores, cities: f.cities, states: f.states };
   });
   const label = "Map of India showing Litensity store locations";
 
@@ -31,7 +31,7 @@ export function FootprintPreview({ section, stores, brands }: { section: Section
 
         <FootprintExplorer
           brands={perBrand}
-          total={{ stores: fp.storesLive, cities: fp.cities, states: fp.states }}
+          total={{ stores: fp.stores, cities: fp.cities, states: fp.states }}
           mapLabel={label}
           map={<IndiaDotMap stores={stores} label={label} linked />}
         />

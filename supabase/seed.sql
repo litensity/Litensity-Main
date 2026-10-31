@@ -277,12 +277,12 @@ insert into public.stats (scope, section_id, label, source, value, sort_order)
 select i.page_key, s.id, i.label, i.source::public.stat_source, NULL, i.ord
 from (values
   ('home', 'highlights', 'Brands operated', 'brands', 1),
-  ('home', 'highlights', 'Stores live', 'stores_live', 2),
+  ('home', 'highlights', 'Stores', 'stores_live', 2),
   ('home', 'highlights', 'Cities', 'cities', 3),
   ('home', 'highlights', 'States', 'states', 4),
   ('home', 'highlights', 'Team members', 'manual', 5),
   ('invest', 'portfolio', 'Brands', 'brands', 1),
-  ('invest', 'portfolio', 'Stores live', 'stores_live', 2),
+  ('invest', 'portfolio', 'Stores', 'stores_live', 2),
   ('invest', 'portfolio', 'Cities', 'cities', 3),
   ('csr', 'impact', '[CLIENT CONTENT REQUIRED] Impact figure', 'manual', 1)
 ) as i(page_key, section_key, label, source, ord)

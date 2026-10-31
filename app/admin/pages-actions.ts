@@ -241,7 +241,7 @@ export async function addSection(pageKey: string, kindKey: string, afterId: stri
   const newId = String((data as { id: string }).id);
   if (kindKey === "stats") {
     await db.from("stats").insert([
-      { section_id: newId, scope: pageKey, label: "Stores live", source: "stores_live", sort_order: 10, status: "published" },
+      { section_id: newId, scope: pageKey, label: "Stores", source: "stores_live", sort_order: 10, status: "published" },
       { section_id: newId, scope: pageKey, label: "Cities", source: "cities", sort_order: 20, status: "published" },
     ]);
   }

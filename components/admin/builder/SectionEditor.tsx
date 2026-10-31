@@ -315,7 +315,7 @@ export function SectionEditor({ section, kind, thumbs, saving, onDirty, onSave, 
                 <input className="a-input" placeholder="Label" value={stat.label} onChange={(e) => updateStat(idx, { label: e.target.value })} aria-label="Label" />
                 <select className="a-input" value={stat.source} onChange={(e) => updateStat(idx, { source: e.target.value as BuilderStat["source"] })} aria-label="Source">
                   <option value="manual">Manual</option>
-                  <option value="stores_live">Auto · live stores</option>
+                  <option value="stores_live">Auto · stores</option>
                   <option value="cities">Auto · cities</option>
                   <option value="states">Auto · states</option>
                   <option value="brands">Auto · brands</option>

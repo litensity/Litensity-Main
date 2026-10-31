@@ -88,9 +88,9 @@ export async function BrandRowsSection() {
               <Reveal>
                 <CmsText as="p" value={brand.positioning} className={css.positioning} />
               </Reveal>
-              {fp.storesLive > 0 && (
+              {fp.stores > 0 && (
                 <p className={css.count}>
-                  <strong>{fp.storesLive}</strong> {fp.storesLive === 1 ? "store" : "stores"} · {fp.cities} {fp.cities === 1 ? "city" : "cities"}
+                  <strong>{fp.stores}</strong> {fp.stores === 1 ? "store" : "stores"} · {fp.cities} {fp.cities === 1 ? "city" : "cities"}
                 </p>
               )}
               <ul role="list" className={css.quick}>

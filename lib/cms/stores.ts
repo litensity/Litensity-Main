@@ -65,17 +65,17 @@ export async function getStoresForBrand(brandId: string): Promise<Store[]> {
 }
 
 export interface Footprint {
-  storesLive: number;
+  stores: number;
   cities: number;
   states: number;
 }
 
+/** Counts every listed store — live and opening soon — so the footprint includes announced stores. */
 export function footprintOf(stores: Store[]): Footprint {
-  const live = stores.filter((s) => s.status === "live");
   return {
-    storesLive: live.length,
-    cities: new Set(live.map((s) => `${s.state}|${s.city}`.toLowerCase())).size,
-    states: new Set(live.map((s) => s.state.toLowerCase())).size,
+    stores: stores.length,
+    cities: new Set(stores.map((s) => `${s.state}|${s.city}`.toLowerCase())).size,
+    states: new Set(stores.map((s) => s.state.toLowerCase())).size,
   };
 }
 
@@ -100,7 +100,7 @@ export async function resolveStats(rows: StatRowDb[], brandId?: string): Promise
 
   return rows.map((r) => {
     const computed: Record<string, number> = {
-      stores_live: footprint.storesLive,
+      stores_live: footprint.stores,
       cities: footprint.cities,
       states: footprint.states,
       brands: brandCount,
